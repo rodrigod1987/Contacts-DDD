@@ -1,0 +1,7 @@
+#Excluded folders
+target/
+.settings/
+
+#Excluded files
+.project
+.classpath
