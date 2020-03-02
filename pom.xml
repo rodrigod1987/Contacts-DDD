@@ -1,17 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>br.com.rodrigo.contacts</groupId>
-  <artifactId>contacts-ddd</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>contacts-ddd-domain</module>
-  	<module>contacts-ddd-data</module>
-  	<module>contacts-ddd-application</module>
-  	<module>contacts-ddd-api</module>
-  </modules>
-  
-  <build>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.rodrigo.contacts</groupId>
+	<artifactId>contacts-ddd</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>contacts-ddd-domain</module>
+		<module>contacts-ddd-data</module>
+		<module>contacts-ddd-application</module>
+		<module>contacts-ddd-api</module>
+	</modules>
+
+	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -49,5 +51,5 @@
 			</plugin>
 		</plugins>
 	</build>
-  
+
 </project>
