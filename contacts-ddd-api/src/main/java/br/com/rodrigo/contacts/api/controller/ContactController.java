@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import br.com.rodrigo.contacts.app.service.ContactsAppService;
 import br.com.rodrigo.contacts.app.service.dto.ContactDto;
 
@@ -29,6 +33,14 @@ public class ContactController {
 	}
 
 	@GetMapping
+	@ApiOperation(value = "Retorna a lista de Contatos")
+	@ApiResponses(value = {
+		    @ApiResponse(code = 200, message = "Requisição realizada com sucesso."),
+		    @ApiResponse(code = 401, message = "Você não tem permissão para acessar este recurso."),
+		    @ApiResponse(code = 403, message = "Acesso proibido."),
+		    @ApiResponse(code = 404, message = "Recurso não encontrado."),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+		})
 	public ResponseEntity<Collection<ContactDto>> getAll() {
 		return new ResponseEntity<>(appService.findAll(), HttpStatus.OK);
 	}
