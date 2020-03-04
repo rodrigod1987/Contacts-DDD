@@ -45,13 +45,13 @@ public class PhoneController {
 		return new ResponseEntity<>(phoneAppService.save(phoneDto), HttpStatus.OK);
 	}
 	
-	@PutMapping
-	public ResponseEntity<PhoneDto> put(@RequestBody PhoneDto phoneDto) {
+	@PutMapping("/{id}")
+	public ResponseEntity<PhoneDto> put(@PathVariable Long id, @RequestBody PhoneDto phoneDto) {
 		return new ResponseEntity<>(phoneAppService.save(phoneDto), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathParam("id") Long id) {
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		phoneAppService.delete(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
