@@ -55,8 +55,8 @@ public class ContactController {
 		return new ResponseEntity<>(appService.save(contact), HttpStatus.OK);
 	}
 
-	@PutMapping
-	public ResponseEntity<ContactDto> update(@RequestBody ContactDto contact) {
+	@PutMapping("/{id}")
+	public ResponseEntity<ContactDto> update(@PathVariable Long id, @RequestBody ContactDto contact) {
 		return new ResponseEntity<>(appService.save(contact), HttpStatus.OK);
 	}
 
