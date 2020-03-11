@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.api.data;
+package br.com.rodrigo.contacts.api.configuration;
 
 import java.util.Properties;
 
