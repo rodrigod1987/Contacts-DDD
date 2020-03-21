@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rodrigo.contacts.app.service.PhoneAppService;
-import br.com.rodrigo.contacts.app.service.dto.PhoneDto;
+import br.com.rodrigo.contacts.domain.service.dto.PhoneDto;
 
 @RestController
 @RequestMapping("/api/v1/phones")

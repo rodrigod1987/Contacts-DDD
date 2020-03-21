@@ -7,9 +7,9 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.rodrigo.contacts.app.service.dto.PhoneDto;
 import br.com.rodrigo.contacts.domain.app.service.BaseAppService;
 import br.com.rodrigo.contacts.domain.model.Phone;
+import br.com.rodrigo.contacts.domain.service.dto.PhoneDto;
 import br.com.rodrigo.contacts.service.PhoneService;
 
 @Service

@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.app.service.dto;
+package br.com.rodrigo.contacts.domain.service.dto;
 
 import java.io.Serializable;
 

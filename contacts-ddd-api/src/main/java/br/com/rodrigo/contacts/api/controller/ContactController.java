@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import br.com.rodrigo.contacts.app.service.ContactsAppService;
-import br.com.rodrigo.contacts.app.service.dto.ContactDto;
+import br.com.rodrigo.contacts.domain.service.dto.ContactDto;
 
 @RestController
 @RequestMapping("/api/v1/contacts")
@@ -35,11 +35,11 @@ public class ContactController {
 	@GetMapping
 	@ApiOperation(value = "Retorna a lista de Contatos")
 	@ApiResponses(value = {
-		    @ApiResponse(code = 200, message = "Requisição realizada com sucesso."),
-		    @ApiResponse(code = 401, message = "Você não tem permissão para acessar este recurso."),
+		    @ApiResponse(code = 200, message = "Requisiï¿½ï¿½o realizada com sucesso."),
+		    @ApiResponse(code = 401, message = "Vocï¿½ nï¿½o tem permissï¿½o para acessar este recurso."),
 		    @ApiResponse(code = 403, message = "Acesso proibido."),
-		    @ApiResponse(code = 404, message = "Recurso não encontrado."),
-		    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+		    @ApiResponse(code = 404, message = "Recurso nï¿½o encontrado."),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceï¿½ï¿½o."),
 		})
 	public ResponseEntity<Collection<ContactDto>> getAll() {
 		return new ResponseEntity<>(appService.findAll(), HttpStatus.OK);
