@@ -1,0 +1,8 @@
+<h2>Contacts</h2>
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let contact of contacts" 
+        routerLink="/contacts/{{contact.id}}">
+        <span>{{contact.id}}</span> {{contact.name}}
+    </li>
+</ul>
