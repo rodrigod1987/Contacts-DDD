@@ -21,7 +21,7 @@ export class ContactsComponent implements OnInit {
   getContacts() : void {
     this.contactService
       .getContacts()
-      .subscribe(contacts => this.contacts = contacts.slice(1, 5));
+      .subscribe(contacts => this.contacts = contacts);
   }
 
 }

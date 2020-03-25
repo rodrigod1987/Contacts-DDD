@@ -36,13 +36,15 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/authenticate")
-	public ResponseEntity<?> authenticate(@RequestBody ApplicationUserDto user) throws Exception {
+	public ResponseEntity<TokenResponseDto> authenticate(@RequestBody ApplicationUserDto user) throws Exception {
 		
 		authenticate(user.getUserName(), user.getPassword());
 		
 		UserDetails userDetails = applicationUserDetailsService.loadUserByUsername(user.getUserName());
 		
-		return ResponseEntity.ok(new TokenResponseDto(jwtToken.generate(userDetails)));
+		return ResponseEntity
+				.ok(new TokenResponseDto(user.getUserName(), 
+						jwtToken.generate(userDetails)));
 		
 	}
 
