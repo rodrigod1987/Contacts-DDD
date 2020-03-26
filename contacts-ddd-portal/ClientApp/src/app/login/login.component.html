@@ -1,18 +1,24 @@
-<h1>Contacts DDD</h1>
-<h3>Login</h3>
-<form (ngSubmit)="login()">
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" [(ngModel)]="user.userName" name="username" aria-describedby="usernameHelp">
-        <small id="usernameHelp" class="form-text text-muted">We'll never share your user with anyone else.</small>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h1>Contacts DDD</h1>
+    <h3>Login</h3>
+    <div class="login-form">
+      <form (ngSubmit)="login()">
+          <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" [(ngModel)]="user.userName" name="username" aria-describedby="usernameHelp">
+              <small id="usernameHelp" class="form-text text-muted">We'll never share your user with anyone else.</small>
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" [(ngModel)]="user.password" name="password">
+          </div>
+          <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button class="btn btn-primary">Login</button>
+      </form>
     </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" [(ngModel)]="user.password" name="password">
-    </div>
-    <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button class="btn btn-primary">Login</button>
-</form>
+  </div>
+</div>

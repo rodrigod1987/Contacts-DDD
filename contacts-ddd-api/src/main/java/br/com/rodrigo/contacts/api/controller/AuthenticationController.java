@@ -36,27 +36,36 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/authenticate")
-	public ResponseEntity<TokenResponseDto> authenticate(@RequestBody ApplicationUserDto user) throws Exception {
-		
-		authenticate(user.getUserName(), user.getPassword());
+	public ResponseEntity<TokenResponseDto> authenticate(@RequestBody ApplicationUserDto user) {
+		try {
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
+		} catch (DisabledException e) {
+			System.out.println(e.getMessage());
+			return ResponseEntity
+				.badRequest()
+				.body(new TokenResponseDto(false, 
+					null, 
+					"Disabled user", 
+					null));
+		} catch (BadCredentialsException ex) {
+			System.out.println(ex.getMessage());
+			return ResponseEntity
+				.badRequest()
+				.body(new TokenResponseDto(false, 
+					null, 
+					"Invalid credentials.", 
+					null));
+		}
 		
 		UserDetails userDetails = applicationUserDetailsService.loadUserByUsername(user.getUserName());
 		
+		String token = jwtToken.generate(userDetails);
+		
 		return ResponseEntity
-				.ok(new TokenResponseDto(user.getUserName(), 
-						jwtToken.generate(userDetails)));
-		
-	}
-
-	private void authenticate(String userName, String password) throws Exception {
-		
-		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, password));
-		} catch (DisabledException e) {
-			throw new Exception("USER_DISABLED", e);
-		} catch (BadCredentialsException ex) {
-			throw new Exception("INVALID_CREDENTIALS", ex);
-		}
+				.ok(new TokenResponseDto(true, 
+						jwtToken.getExpirationFrom(token), 
+						"Login successfully.", 
+						token));
 		
 	}
 	

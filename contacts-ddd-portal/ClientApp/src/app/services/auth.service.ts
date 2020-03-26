@@ -3,20 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../model/User';
 import { MessageService } from './message.service';
 import { catchError, tap, map } from 'rxjs/operators';
-import { AuthenticationToken } from '../model/Token';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  
+
   authenticationUrl : string = "api/v1/auth/authenticate";
   private currentUserSubject: BehaviorSubject<User>;
   private currentUser: Observable<User>;
 
-  constructor(private httpClient: HttpClient, 
-    private messageService: MessageService) { 
+  constructor(private httpClient: HttpClient,
+    private messageService: MessageService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -44,7 +43,7 @@ export class AuthService {
   }
 
   logout() {
-    this.messageService.log(`AuthService: removed user ${this.getCurrentUser()}`)
+    this.messageService.log(`AuthService: removed user ${this.getCurrentUser().userName}`)
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
