@@ -35,11 +35,11 @@ public class ContactController {
 	@GetMapping
 	@ApiOperation(value = "Retorna a lista de Contatos")
 	@ApiResponses(value = {
-		    @ApiResponse(code = 200, message = "Requisiï¿½ï¿½o realizada com sucesso."),
-		    @ApiResponse(code = 401, message = "Vocï¿½ nï¿½o tem permissï¿½o para acessar este recurso."),
+		    @ApiResponse(code = 200, message = "Requisiçãoo realizada com sucesso."),
+		    @ApiResponse(code = 401, message = "Você não tem permissão para acessar este recurso."),
 		    @ApiResponse(code = 403, message = "Acesso proibido."),
-		    @ApiResponse(code = 404, message = "Recurso nï¿½o encontrado."),
-		    @ApiResponse(code = 500, message = "Foi gerada uma exceï¿½ï¿½o."),
+		    @ApiResponse(code = 404, message = "Recurso não encontrado."),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceção não tratada no servidor."),
 		})
 	public ResponseEntity<Collection<ContactDto>> getAll() {
 		return new ResponseEntity<>(appService.findAll(), HttpStatus.OK);

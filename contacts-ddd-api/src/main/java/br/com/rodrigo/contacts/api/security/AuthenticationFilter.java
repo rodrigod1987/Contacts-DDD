@@ -26,7 +26,8 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 	private JwtToken jwtToken;
 	
 	@Autowired
-	public AuthenticationFilter(ApplicationUserDetailsService applicationUserDetailsService, JwtToken jwtToken) {
+	public AuthenticationFilter(ApplicationUserDetailsService applicationUserDetailsService, 
+			JwtToken jwtToken) {
 		this.applicationUserDetailsService = applicationUserDetailsService;
 		this.jwtToken = jwtToken;
 	}
@@ -37,9 +38,12 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 		
 		String header = request.getHeader("Authorization");
 		
-		JwtRequest jwtRequest = validateRequestHeader(header);
-				
-		authenticateRequest(request, jwtRequest);
+		if (header != null) {
+			JwtRequest jwtRequest = validateRequestHeader(header);
+					
+			if (jwtRequest != null)
+				authenticateRequest(request, jwtRequest);
+		}
 		
 		filterChain.doFilter(request, response);
 		
@@ -69,7 +73,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
 	private JwtRequest validateRequestHeader(String header) {
 
-		if (header != null && header.startsWith("Bearer ")) {
+		if (header.startsWith("Bearer ")) {
 			try {
 				
 				String token = header.substring(7);

@@ -1,0 +1,20 @@
+<div *ngIf="contact">
+
+    <h2>Details: {{contact.name | uppercase}}</h2>
+    <div><span>id: </span>{{contact.id}}</div>
+    <div>
+        <label>name:
+            <input [(ngModel)]="contact.name" placeholder="name"/>
+        </label>
+        <div *ngIf="contact.phones">
+            <h3>Phones</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let phone of contact.phones">
+                    <span>{{phone.id}}</span> 
+                    <input type="tel" [(ngModel)]="phone.number" disabled>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button (click)="goBack()">go back</button>
+</div>
