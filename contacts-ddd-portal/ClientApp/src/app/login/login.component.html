@@ -1,23 +1,26 @@
-<div class="row justify-content-center">
-  <div class="col-md-6">
-    <h1>Contacts DDD</h1>
-    <h3>Login</h3>
-    <div class="login-form">
-      <form (ngSubmit)="login()">
+<div class="jumbotron">
+  <div class=" text-center row justify-content-center">
+    <div class="col-md-6">
+      <h1>Contacts DDD</h1>
+      <form (ngSubmit)="login()" class="form-signin">
+        <h3 class="h3 mb-3 font-weight-normal">Login</h3>
           <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control" [(ngModel)]="user.userName" name="username" aria-describedby="usernameHelp">
-              <small id="usernameHelp" class="form-text text-muted">We'll never share your user with anyone else.</small>
-          </div>
-          <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" [(ngModel)]="user.password" name="password">
+              <input type="text"
+                class="form-control"
+                [(ngModel)]="user.userName"
+                placeholder="Username"
+                name="username" aria-describedby="usernameHelp">
+              <input type="password"
+                class="form-control"
+                [(ngModel)]="user.password"
+                placeholder="Password"
+                name="password" required autofocus>
           </div>
           <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
           </div>
-          <button class="btn btn-primary">Login</button>
+          <button class="btn btn-lg btn-primary btn-block">Login</button>
       </form>
     </div>
   </div>
