@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Register</h1>
+  <form (ngSubmit)="save()">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="user.userName"
+                 name="userName" placeholder="Username" appAutofocus />
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password" />
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary">Submit</button> &nbsp;
+    <button class="btn btn-outline-info" (click)="goBack()">
+      <i class="fa fa-arrow-left"></i> Go back
+    </button>
+  </form>
+</div>

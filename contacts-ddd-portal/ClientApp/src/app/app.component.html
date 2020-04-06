@@ -1,48 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="getLoggedUser()">
-  <a class="navbar-brand" routerLink="/">{{title}}</a>
-  <button class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-label="Toggle navigation"
-    (click)="isCollapsed = !isCollapsed"
-    [attr.aria-expanded]="!isCollapsed">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">{{title}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse"
-    id="navbarSupportedContent"
-    [collapse]="isCollapsed" [isAnimated]="true">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/contacts">Contacts</a>
+        <a class="nav-link" routerLink="contacts" *ngIf="getLoggedUser()">Contacts</a>
       </li>
-      <!--<li class="nav-item dropdown" dropdown>
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" dropdownToggle data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" *dropdownMenu aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>-->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" (click)="logout()">Logout</button>
+    <form class="form-inline my-2 my-lg-0" *ngIf="!getLoggedUser()">
+      <a class="btn btn-outline-success my-2 my-sm-0" routerLink="login">Login</a>
+    </form>
+    <form class="form-inline my-2 my-lg-0" *ngIf="getLoggedUser()">
+      <ul class="navbar-nav mr-auto form-inline">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+            id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Olá, {{getLoggedUser().userName}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <button class="dropdown-item" routerLink="account">
+              <i class="fa fa-user-circle"></i> Account
+            </button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" (click)="logout()">
+              <i class="fa fa-sign-out"></i> Exit
+            </button>
+          </div>
+        </li>
+      </ul>
     </form>
   </div>
 </nav>
-<div class="container">
-  <router-outlet></router-outlet>
-  <!--<app-messages></app-messages>-->
-</div>
+<router-outlet></router-outlet>
+<app-message></app-message>

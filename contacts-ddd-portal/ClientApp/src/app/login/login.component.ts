@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../model/User';
-import { AuthService } from '../services/auth.service';
+import { User } from '../shared/model/User';
+import { AuthService } from '../shared/services/auth.service';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   returnUrl : string;
+  @Input() error: any;
 
   @Input() user: User = {
     userName: '',
@@ -28,13 +29,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    debugger;
-    this.authService.login(this.user.userName, this.user.password)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-      });
+    if (this.user.userName.length > 0 && this.user.password.length > 0)
+      this.authService.login(this.user.userName, this.user.password)
+        .pipe(first())
+        .subscribe(
+          () => {
+            this.router.navigate([this.returnUrl]);
+          },
+          error => { this.error = error; }
+        );
   }
 
 }

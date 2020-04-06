@@ -9,17 +9,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
-import { ApiInterceptor } from './intercept/api.interceptor';
+import { ApiInterceptor } from './shared/intercept/api.interceptor';
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-
-import { MessagesComponent } from './messages/messages.component';
 import { environment } from 'src/environments/environment';
-import { ApiAuthInterceptor } from './intercept/api-auth.interceptor';
-import { ErrorInterceptor } from './intercept/error.interceptor';
+import { ApiAuthInterceptor } from './shared/intercept/api-auth.interceptor';
+import { ErrorInterceptor } from './shared/intercept/error.interceptor';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { MessageComponent } from './message/message.component';
+import { AutofocusDirective } from './shared/directives/autofocus.directive';
 
 @NgModule({
   declarations: [
@@ -27,18 +25,17 @@ import { ErrorInterceptor } from './intercept/error.interceptor';
     LoginComponent,
     ContactsComponent,
     ContactDetailsComponent,
-    MessagesComponent
+    HomeComponent,
+    RegisterComponent,
+    MessageComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule,
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    ModalModule.forRoot(),
-    CollapseModule.forRoot()
+    AppRoutingModule
   ],
   providers: [
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },
