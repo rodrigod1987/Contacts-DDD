@@ -43,7 +43,8 @@ public class AuthenticationController {
 			System.out.println(e.getMessage());
 			return ResponseEntity
 				.badRequest()
-				.body(new TokenResponseDto(false, 
+				.body(new TokenResponseDto(null,
+					false, 
 					null, 
 					"Disabled user", 
 					null));
@@ -51,7 +52,8 @@ public class AuthenticationController {
 			System.out.println(ex.getMessage());
 			return ResponseEntity
 				.badRequest()
-				.body(new TokenResponseDto(false, 
+				.body(new TokenResponseDto(null,
+					false, 
 					null, 
 					"Invalid credentials.", 
 					null));
@@ -62,7 +64,8 @@ public class AuthenticationController {
 		String token = jwtToken.generate(userDetails);
 		
 		return ResponseEntity
-				.ok(new TokenResponseDto(true, 
+				.ok(new TokenResponseDto(user.getUserName(),
+						true, 
 						jwtToken.getExpirationFrom(token), 
 						"Login successfully.", 
 						token));
