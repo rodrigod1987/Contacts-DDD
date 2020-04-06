@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Contact } from '../model/Contact';
-import { ContactService } from '../services/contact.service';
-import { MessageService } from '../services/message.service';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Contact } from '../shared/model/Contact';
+import { ContactService } from '../shared/services/contact.service';
 
 @Component({
   selector: 'app-contacts',

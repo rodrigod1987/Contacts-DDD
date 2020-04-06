@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Contact } from '../model/Contact';
-import { ActivatedRoute } from '@angular/router';
-import { ContactService } from '../services/contact.service';
+import { Contact } from '../shared/model/Contact';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ContactService } from '../shared/services/contact.service';
 import { Location } from '@angular/common';
 
 @Component({
@@ -15,7 +15,7 @@ export class ContactDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private contactService: ContactService,
-    private location: Location) { }
+    private navigation: Router) { }
 
   ngOnInit(): void {
     this.getContact();
@@ -29,7 +29,7 @@ export class ContactDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.navigation.navigate(['/contacts']);
   }
 
 }
