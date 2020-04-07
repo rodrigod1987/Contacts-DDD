@@ -7,8 +7,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { ContactDetailsComponent } from './contact-details/contact-details.component';
+import { ContactsComponent } from './contacts/contacts-list/contacts.component';
+import { ContactDetailsComponent } from './contacts/contacts-details/contacts-details.component';
+import { ContactsAddComponent} from './contacts/contacts-add/contacts-add.component';
 import { ApiInterceptor } from './shared/intercept/api.interceptor';
 
 import { environment } from 'src/environments/environment';
@@ -25,6 +26,7 @@ import { AutofocusDirective } from './shared/directives/autofocus.directive';
     LoginComponent,
     ContactsComponent,
     ContactDetailsComponent,
+    ContactsAddComponent,
     HomeComponent,
     RegisterComponent,
     MessageComponent,

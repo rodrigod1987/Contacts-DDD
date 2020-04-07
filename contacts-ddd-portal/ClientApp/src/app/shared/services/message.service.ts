@@ -15,6 +15,10 @@ export class MessageService {
     this.add(message);
   }
 
+  remove() {
+    this.messages.pop();
+  }
+
   clear() {
     this.messages = [];
   }

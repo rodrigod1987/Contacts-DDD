@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Contacts</h2>
+
+  <div *ngIf="!contacts">Loading...</div>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Id.</th>
+        <th>Name</th>
+        <th style="text-align: right;"><button class="btn btn-outline-success" routerLink="/contacts/new"> New</button></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let contact of contacts">
+      <th>{{contact.id}}</th>
+      <td>{{contact.name}}</td>
+      <td style="text-align: right;">
+        <button class="btn btn-primary" routerLink="/contacts/edit/{{contact.id}}"> Edit</button>&nbsp;
+        <button class="btn btn-outline-danger" (click)="delete(contact.id)"> Delete</button>
+      </td>
+    </tbody>
+  </table>
+
+</div>

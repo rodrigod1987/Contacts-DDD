@@ -1,16 +1,14 @@
-<div *ngIf="messageService.messages.length" style="min-height: 200px;">
+<div *ngIf="messageService.messages.length" style="position: fixed; top: 60px; right: 8px; min-height: 200px;">
 
-  <div class="card" style="position: fixed; top: 70px; right: 0; font-size: x-small;">
-    <h5 class="card-header clearfix">
-      <div class="float-left">Contacts DDD</div>
-      <button class="btn btn-primary float-right" style="width: 30px; height: 30px; font-size: x-small; font-weight: bold;" (click)="messageService.clear()">X</button>
-    </h5>
-    <div class="card-body">
-      <div *ngFor='let message of messageService.messages'>
+  <div *ngFor='let message of messageService.messages'>
+    <div class="card fade-in" style="position: relative; font-size: x-small;">
+      <h5 class="card-header">
+        <div class="float-left">Contacts DDD</div>
+        <button class="btn btn-primary float-right" style="width: 30px; height: 30px; font-size: x-small; font-weight: bold;" (click)="messageService.remove()">X</button>
+      </h5>
+      <div class="card-body">
         <p class="card-text">{{message}}</p>
       </div>
-      <br />
-
     </div>
   </div>
 

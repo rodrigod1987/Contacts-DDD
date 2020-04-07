@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Contact } from '../shared/model/Contact';
-import { ContactService } from '../shared/services/contact.service';
+import { Contact } from '../../shared/model/Contact';
+import { ContactService } from '../../shared/services/contact.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-contacts',
@@ -21,6 +22,11 @@ export class ContactsComponent implements OnInit {
     this.contactService
       .getContacts()
       .subscribe(contacts => this.contacts = contacts);
+  }
+
+  delete(id: number) : void {
+    this.contactService
+      .delete(id);
   }
 
 }

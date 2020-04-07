@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { MessageService } from '../shared/services/message.service';
 
 @Component({

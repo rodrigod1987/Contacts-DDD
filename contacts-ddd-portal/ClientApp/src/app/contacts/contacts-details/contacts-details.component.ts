@@ -1,13 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Contact } from '../shared/model/Contact';
+import { Contact } from '../../shared/model/Contact';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ContactService } from '../shared/services/contact.service';
-import { Location } from '@angular/common';
+import { ContactService } from '../../shared/services/contact.service';
 
 @Component({
   selector: 'app-contact-details',
-  templateUrl: './contact-details.component.html',
-  styleUrls: ['./contact-details.component.css']
+  templateUrl: './contacts-details.component.html',
+  styleUrls: ['./contacts-details.component.css']
 })
 export class ContactDetailsComponent implements OnInit {
 
@@ -26,6 +25,11 @@ export class ContactDetailsComponent implements OnInit {
     this.contactService
       .getContact(id)
       .subscribe(contact => this.contact = contact);
+  }
+
+  edit() : void {
+    debugger;
+    this.contactService.edit(this.contact);
   }
 
   goBack(): void {
