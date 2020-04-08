@@ -26,8 +26,8 @@ public class ContactsAppService implements BaseAppService<ContactDto> {
 	}
 
 	@Override
-	public Collection<ContactDto> findAll() {
-		Collection<Contact> contacts = service.findAll();
+	public Collection<ContactDto> findAll(Integer page, Integer size) {
+		Collection<Contact> contacts = service.findAll(page, size);
 		
 		return contacts
 				.stream()

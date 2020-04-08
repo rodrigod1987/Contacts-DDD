@@ -26,8 +26,8 @@ public class PhoneAppService implements BaseAppService<PhoneDto> {
 	}
 
 	@Override
-	public Collection<PhoneDto> findAll() {
-		Collection<Phone> phones = service.findAll();
+	public Collection<PhoneDto> findAll(Integer page, Integer size) {
+		Collection<Phone> phones = service.findAll(page, size);
 		
 		return phones
 				.stream()

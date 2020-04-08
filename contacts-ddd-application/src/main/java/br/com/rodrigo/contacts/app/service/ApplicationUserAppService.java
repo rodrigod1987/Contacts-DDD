@@ -26,8 +26,8 @@ public class ApplicationUserAppService implements ApplicationUserAppServiceIntf{
 	}
 
 	@Override
-	public Collection<ApplicationUserDto> findAll() {
-		return service.findAll()
+	public Collection<ApplicationUserDto> findAll(Integer page, Integer size) {
+		return service.findAll(page, size)
 				.stream()
 				.map(user -> mapper.map(user, ApplicationUserDto.class))
 				.collect(Collectors.toList());

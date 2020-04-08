@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
@@ -41,8 +42,10 @@ public class ContactController {
 		    @ApiResponse(code = 404, message = "Recurso não encontrado."),
 		    @ApiResponse(code = 500, message = "Foi gerada uma exceção não tratada no servidor."),
 		})
-	public ResponseEntity<Collection<ContactDto>> getAll() {
-		return new ResponseEntity<>(appService.findAll(), HttpStatus.OK);
+	public ResponseEntity<Collection<ContactDto>> getAll(
+			@RequestParam(defaultValue = "0") Integer page, 
+            @RequestParam(defaultValue = "10") Integer size) {
+		return new ResponseEntity<>(appService.findAll(page, size), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")

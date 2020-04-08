@@ -1,7 +1,7 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, AfterViewInit } from '@angular/core';
 import { Contact } from '../../shared/model/Contact';
 import { ContactService } from '../../shared/services/contact.service';
-import { Location } from '@angular/common';
+import { PagerService } from 'src/app/shared/services/pager.service';
 
 @Component({
   selector: 'app-contacts',
@@ -10,23 +10,41 @@ import { Location } from '@angular/common';
 })
 export class ContactsComponent implements OnInit {
 
-  contacts: Contact[];
+  private contacts : Contact[];
+  pagedContacts : Contact[];
 
-  constructor(private contactService: ContactService) { }
+  // pager object
+  pager: any = {};
+
+  constructor(private contactService: ContactService, private pagerService: PagerService) { }
 
   ngOnInit(): void {
+    debugger;
     this.getContacts();
   }
 
   getContacts() : void {
     this.contactService
       .getContacts()
-      .subscribe(contacts => this.contacts = contacts);
+      .subscribe(contacts => {
+        this.contacts = contacts;
+
+        // initialize to page 1
+        this.setPage(1);
+      });
   }
 
   delete(id: number) : void {
     this.contactService
       .delete(id);
+  }
+
+  setPage(page: number) {
+    // get pager object from service
+    this.pager = this.pagerService.getPager(this.contacts.length, page);
+
+    // get current page of items
+    this.pagedContacts = this.contacts.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 }

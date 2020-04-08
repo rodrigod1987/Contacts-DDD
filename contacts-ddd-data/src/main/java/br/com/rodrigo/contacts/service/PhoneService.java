@@ -1,9 +1,13 @@
 package br.com.rodrigo.contacts.service;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.data.repository.PhoneRepository;
@@ -21,8 +25,14 @@ public class PhoneService implements BaseService<Phone> {
 	}
 
 	@Override
-	public Collection<Phone> findAll() {
-		return repository.findAll();
+	public Collection<Phone> findAll(Integer page, Integer size) {
+		Pageable paging = PageRequest.of(page, size);
+		Page<Phone> phonesPage = repository.findAll(paging); 
+		
+		if (phonesPage.hasContent())
+			return phonesPage.getContent();
+		
+		return Collections.emptyList();
 	}
 
 	@Override

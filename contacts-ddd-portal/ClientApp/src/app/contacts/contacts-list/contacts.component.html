@@ -1,24 +1,65 @@
 <div class="container">
-  <h2>Contacts</h2>
+  <h2>
+    <button class="btn btn-outline-success" routerLink="/contacts/new"> <i class="fa fa-plus-circle"></i></button> &nbsp;
+    Contacts
+  </h2>
+  <hr>
+  <div *ngIf="!pagedContacts">Loading...</div>
 
-  <div *ngIf="!contacts">Loading...</div>
-
-  <table class="table">
-    <thead class="thead-dark">
+  <!--pager-->
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+        <a class="page-link" (click)="setPage(1)">First</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+  </ul>
+  <table id="contactsTable" class="table table-sm table-striped">
+    <thead>
       <tr>
-        <th>Id.</th>
+        <th>Id</th>
         <th>Name</th>
-        <th style="text-align: right;"><button class="btn btn-outline-success" routerLink="/contacts/new"> New</button></th>
+        <th></th>
       </tr>
     </thead>
-    <tbody *ngFor="let contact of contacts">
-      <th>{{contact.id}}</th>
-      <td>{{contact.name}}</td>
-      <td style="text-align: right;">
-        <button class="btn btn-primary" routerLink="/contacts/edit/{{contact.id}}"> Edit</button>&nbsp;
-        <button class="btn btn-outline-danger" (click)="delete(contact.id)"> Delete</button>
-      </td>
+    <tbody>
+      <tr *ngFor="let contact of pagedContacts">
+        <th>{{contact.id}}</th>
+        <td>{{contact.name}}</td>
+        <td style="text-align: right;">
+          <button class="btn btn-primary" routerLink="/contacts/edit/{{contact.id}}"> <i class="fa fa-edit"></i></button>&nbsp;
+          <button class="btn btn-outline-danger" (click)="delete(contact.id)"> <i class="fa fa-remove"></i></button>
+        </td>
+      </tr>
     </tbody>
   </table>
+  <!-- pager -->
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+        <a class="page-link" (click)="setPage(1)">First</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+  </ul>
 
 </div>
