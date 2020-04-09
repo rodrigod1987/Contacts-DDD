@@ -1,8 +1,7 @@
 package br.com.rodrigo.contacts.api.controller;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,12 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.rodrigo.contacts.app.service.ContactsAppService;
+import br.com.rodrigo.contacts.domain.model.Contact;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
-import br.com.rodrigo.contacts.app.service.ContactsAppService;
-import br.com.rodrigo.contacts.domain.service.dto.ContactDto;
 
 @RestController
 @RequestMapping("/api/v1/contacts")
@@ -42,24 +40,24 @@ public class ContactController {
 		    @ApiResponse(code = 404, message = "Recurso não encontrado."),
 		    @ApiResponse(code = 500, message = "Foi gerada uma exceção não tratada no servidor."),
 		})
-	public ResponseEntity<Collection<ContactDto>> getAll(
+	public ResponseEntity<Page<Contact>> getAll(
 			@RequestParam(defaultValue = "0") Integer page, 
             @RequestParam(defaultValue = "10") Integer size) {
 		return new ResponseEntity<>(appService.findAll(page, size), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ContactDto> get(@PathVariable Long id) {
+	public ResponseEntity<Contact> get(@PathVariable Long id) {
 		return new ResponseEntity<>(appService.findBy(id), HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<ContactDto> create(@RequestBody ContactDto contact) {
+	public ResponseEntity<Contact> create(@RequestBody Contact contact) {
 		return new ResponseEntity<>(appService.save(contact), HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ContactDto> update(@PathVariable Long id, @RequestBody ContactDto contact) {
+	public ResponseEntity<Contact> update(@PathVariable Long id, @RequestBody Contact contact) {
 		return new ResponseEntity<>(appService.save(contact), HttpStatus.OK);
 	}
 

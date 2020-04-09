@@ -1,29 +1,31 @@
 <div class="container">
-  <h2>
-    <button class="btn btn-outline-success" routerLink="/contacts/new"> <i class="fa fa-plus-circle"></i></button> &nbsp;
-    Contacts
-  </h2>
+  <h2>Contacts</h2>
   <hr>
-  <div *ngIf="!pagedContacts">Loading...</div>
+  <div *ngIf="!pager">Loading...</div>
 
-  <!--pager-->
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
-    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
-        <a class="page-link" (click)="setPage(1)">First</a>
+  <div style="padding-bottom: 8px;">
+    <button class="btn btn-outline-success" routerLink="/contacts/new"> <i class="fa fa-plus-circle"></i></button>
+
+    <!-- pager -->
+  <ul *ngIf="pager && pager.pages.length" class="pagination justify-content-end">
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 0}">
+        <a class="page-link" (click)="firstPage()">First</a>
     </li>
-    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
-        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 0}">
+        <a class="page-link" (click)="priorPage()">Previous</a>
     </li>
     <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+        <a class="page-link" (click)="selectedPage(page)">{{page + 1}}</a>
     </li>
     <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+        <a class="page-link" (click)="nextPage()">Next</a>
     </li>
     <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+        <a class="page-link" (click)="lastPage()">Last</a>
     </li>
   </ul>
+  </div>
+
   <table id="contactsTable" class="table table-sm table-striped">
     <thead>
       <tr>
@@ -33,7 +35,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let contact of pagedContacts">
+      <tr *ngFor="let contact of pagedItems">
         <th>{{contact.id}}</th>
         <td>{{contact.name}}</td>
         <td style="text-align: right;">
@@ -43,22 +45,23 @@
       </tr>
     </tbody>
   </table>
+
   <!-- pager -->
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
-    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
-        <a class="page-link" (click)="setPage(1)">First</a>
+  <ul *ngIf="pager && pager.pages.length" class="pagination justify-content-end">
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 0}">
+        <a class="page-link" (click)="firstPage()">First</a>
     </li>
-    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
-        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 0}">
+        <a class="page-link" (click)="priorPage()">Previous</a>
     </li>
     <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-        <a class="page-link" (click)="setPage(page)">{{page}}</a>
+        <a class="page-link" (click)="selectedPage(page)">{{page + 1}}</a>
     </li>
     <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+        <a class="page-link" (click)="nextPage()">Next</a>
     </li>
     <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+        <a class="page-link" (click)="lastPage()">Last</a>
     </li>
   </ul>
 

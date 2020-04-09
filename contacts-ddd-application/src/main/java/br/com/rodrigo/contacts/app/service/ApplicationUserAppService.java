@@ -1,41 +1,31 @@
 package br.com.rodrigo.contacts.app.service;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.domain.app.service.ApplicationUserAppServiceIntf;
 import br.com.rodrigo.contacts.domain.model.ApplicationUser;
 import br.com.rodrigo.contacts.domain.service.ApplicationUserServiceIntf;
-import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
 
 @Service
-public class ApplicationUserAppService implements ApplicationUserAppServiceIntf{
+public class ApplicationUserAppService implements ApplicationUserAppServiceIntf {
 
-	private Mapper mapper;
 	private ApplicationUserServiceIntf service;
 	
 	@Autowired
-	public ApplicationUserAppService(Mapper mapper,
-			ApplicationUserServiceIntf service) {
-		this.mapper = mapper;
+	public ApplicationUserAppService(ApplicationUserServiceIntf service) {
 		this.service = service;
 	}
 
 	@Override
-	public Collection<ApplicationUserDto> findAll(Integer page, Integer size) {
-		return service.findAll(page, size)
-				.stream()
-				.map(user -> mapper.map(user, ApplicationUserDto.class))
-				.collect(Collectors.toList());
+	public Page<ApplicationUser> findAll(Integer page, Integer size) {
+		return service.findAll(page, size);
 	}
 
 	@Override
-	public ApplicationUserDto save(ApplicationUserDto entity) {
-		return mapper.map(service.save(mapper.map(entity, ApplicationUser.class)), ApplicationUserDto.class);
+	public ApplicationUser save(ApplicationUser entity) {
+		return service.save(entity);
 	}
 
 	@Override
@@ -44,13 +34,13 @@ public class ApplicationUserAppService implements ApplicationUserAppServiceIntf{
 	}
 
 	@Override
-	public ApplicationUserDto findBy(Long id) {
-		return mapper.map(service.findBy(id), ApplicationUserDto.class);
+	public ApplicationUser findBy(Long id) {
+		return service.findBy(id);
 	}
 
 	@Override
-	public ApplicationUserDto findByUserName(String userName) {
-		return mapper.map(service.findByUserName(userName), ApplicationUserDto.class);
+	public ApplicationUser findByUserName(String userName) {
+		return service.findByUserName(userName);
 	}
 
 }

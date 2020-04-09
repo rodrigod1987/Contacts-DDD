@@ -1,7 +1,5 @@
 package br.com.rodrigo.contacts.service;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +23,9 @@ public class ContactService implements BaseService<Contact> {
 	}
 
 	@Override
-	public Collection<Contact> findAll(Integer page, Integer size) {
+	public Page<Contact> findAll(Integer page, Integer size) {
 		Pageable paging = PageRequest.of(page, size);
-		Page<Contact> contactsPage = repository.findAll(paging);
-		
-		if (contactsPage.hasContent())
-			return contactsPage.getContent();
-		
-		return Collections.emptyList();		
+		return repository.findAll(paging);
 	}
 
 	@Override

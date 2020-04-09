@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rodrigo.contacts.domain.app.service.ApplicationUserAppServiceIntf;
-import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
+import br.com.rodrigo.contacts.domain.model.ApplicationUser;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -23,7 +23,7 @@ public class ApplicationUserController {
 	}
 	
 	@PostMapping("/signup")
-	public void signUp(@RequestBody ApplicationUserDto user) {
+	public void signUp(@RequestBody ApplicationUser user) {
 		
 		user.setPassword(encoder.encode(user.getPassword()));
 		appService.save(user);

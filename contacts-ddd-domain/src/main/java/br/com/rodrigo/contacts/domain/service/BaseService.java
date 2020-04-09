@@ -1,10 +1,10 @@
 package br.com.rodrigo.contacts.domain.service;
 
-import java.util.Collection;
+import org.springframework.data.domain.Page;
 
 public interface BaseService<T> {
 
-	Collection<T> findAll(Integer page, Integer size);
+	Page<T> findAll(Integer page, Integer size);
 
 	T save(T entity);
 
