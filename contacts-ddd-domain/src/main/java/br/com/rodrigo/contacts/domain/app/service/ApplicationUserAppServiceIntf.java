@@ -1,9 +1,9 @@
 package br.com.rodrigo.contacts.domain.app.service;
 
-import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
+import br.com.rodrigo.contacts.domain.model.ApplicationUser;
 
-public interface ApplicationUserAppServiceIntf extends BaseAppService<ApplicationUserDto> {
+public interface ApplicationUserAppServiceIntf extends BaseAppService<ApplicationUser> {
 
-	ApplicationUserDto findByUserName(String userName);
+	ApplicationUser findByUserName(String userName);
 	
 }

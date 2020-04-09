@@ -1,9 +1,11 @@
 package br.com.rodrigo.contacts.service;
 
-import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.data.repository.ApplicationUserRepository;
@@ -22,8 +24,9 @@ public class ApplicationUserService implements ApplicationUserServiceIntf {
 	}
 
 	@Override
-	public Collection<ApplicationUser> findAll() {
-		return repository.findAll();
+	public Page<ApplicationUser> findAll(Integer page, Integer size) {
+		Pageable paging = PageRequest.of(page, size);
+		return repository.findAll(paging);
 	}
 
 	@Override
@@ -38,7 +41,7 @@ public class ApplicationUserService implements ApplicationUserServiceIntf {
 		if (user.isPresent())
 			repository.delete(user.get());
 		
-		throw new ApplicationUserDeleteException("O usu√°rio n√£o foi exclu√≠do pois n√£o foi localizado.");
+		throw new ApplicationUserDeleteException("O usu·rio n„o foi excluÌdo pois n„o foi localizado.");
 	}
 
 	@Override

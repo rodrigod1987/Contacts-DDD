@@ -1,54 +1,41 @@
 package br.com.rodrigo.contacts.app.service;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.domain.app.service.BaseAppService;
 import br.com.rodrigo.contacts.domain.model.Contact;
 import br.com.rodrigo.contacts.domain.model.Phone;
-import br.com.rodrigo.contacts.domain.service.dto.ContactDto;
 import br.com.rodrigo.contacts.service.ContactService;
 
 @Service
-public class ContactsAppService implements BaseAppService<ContactDto> {
+public class ContactsAppService implements BaseAppService<Contact> {
 
 	private final ContactService service;
-	private final Mapper mapper;
 
 	@Autowired
-	public ContactsAppService(ContactService service, Mapper mapper) {
+	public ContactsAppService(ContactService service) {
 		this.service = service;
-		this.mapper = mapper; 
 	}
 
 	@Override
-	public Collection<ContactDto> findAll() {
-		Collection<Contact> contacts = service.findAll();
-		
-		return contacts
-				.stream()
-				.map(contact -> mapper.map(contact, ContactDto.class))
-				.collect(Collectors.toList());
+	public Page<Contact> findAll(Integer page, Integer size) {
+		return service.findAll(page, size);
 	}
 
 	@Override
-	public ContactDto save(ContactDto entity) {
+	public Contact save(Contact entity) {
 		
-		Contact contact = mapper.map(entity, Contact.class);
-		
-		if (contact.getPhones() != null) {
-			for(Phone phone : contact.getPhones()) {
+		if (entity.getPhones() != null) {
+			for(Phone phone : entity.getPhones()) {
 				if (phone.getId() == 0) {
-					phone.setContact(contact);
+					phone.setContact(entity);
 				}
 			}
 		}
 		
-		return mapper.map(service.save(contact), ContactDto.class);
+		return service.save(entity);
 
 	}
 
@@ -58,8 +45,8 @@ public class ContactsAppService implements BaseAppService<ContactDto> {
 	}
 
 	@Override
-	public ContactDto findBy(Long id) {
-		return mapper.map(service.findBy(id), ContactDto.class);
+	public Contact findBy(Long id) {
+		return service.findBy(id);
 	}
 
 }

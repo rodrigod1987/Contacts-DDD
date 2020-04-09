@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HandleError } from '../handlers/handle-error';
 import { Router } from '@angular/router';
+import { Page } from '../model/Page';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +28,11 @@ export class ContactService {
       );
   }
 
-  getContacts(): Observable<Contact[]> {
-    return this.httpClient.get<Contact[]>(this.contactsUrl)
+  getContacts(page: number = 0): Observable<Page<Contact>> {
+    return this.httpClient.get<Page<Contact>>(`${this.contactsUrl}?page=${page}`)
       .pipe(
         tap(_ => this.messageService.log("ContactService: fetched all rows from server.")),
-        catchError(this.handleError.handle<Contact[]>('getContacts', []))
+        catchError(this.handleError.handle<Page<Contact>>('getContacts'))
       );
   }
 

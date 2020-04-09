@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.app.service.ApplicationUserAppService;
-import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
+import br.com.rodrigo.contacts.domain.model.ApplicationUser;
 
 @Service
 public class ApplicationUserDetailsService implements UserDetailsService {
@@ -24,7 +24,7 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		ApplicationUserDto user = appService.findByUserName(username);
+		ApplicationUser user = appService.findByUserName(username);
 		
 		if (user == null) {
             throw new UsernameNotFoundException(username);
