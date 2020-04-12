@@ -1,5 +1,6 @@
 package br.com.rodrigo.contacts.service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,9 @@ public class PhoneService implements BaseService<Phone> {
 		return null;
 	}
 	
+	public Collection<Phone> findAllBy(Long contactId) {
+		return repository.findByContactId(contactId);
+	}
 	
 
 }

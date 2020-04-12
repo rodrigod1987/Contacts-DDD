@@ -1,5 +1,7 @@
 package br.com.rodrigo.contacts.app.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,10 @@ public class PhoneAppService implements BaseAppService<Phone> {
 	@Override
 	public Phone findBy(Long id) {
 		return service.findBy(id);
+	}
+	
+	public Collection<Phone> findAllBy(Long contactId) {
+		return service.findAllBy(contactId);
 	}
 
 }

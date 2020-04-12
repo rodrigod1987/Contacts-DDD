@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Contact {
@@ -18,8 +18,8 @@ public class Contact {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
+	@JsonIgnore
 	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL)
-	@JsonManagedReference
 	private List<Phone> phones;
 	
 	public long getId() {

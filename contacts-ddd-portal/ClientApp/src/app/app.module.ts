@@ -19,6 +19,9 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MessageComponent } from './message/message.component';
 import { AutofocusDirective } from './shared/directives/autofocus.directive';
+import { PhoneListComponent } from './phone/phone-list/phone-list.component';
+import { PhoneDetailsComponent } from './phone/phone-details/phone-details.component';
+import { PhoneAddComponent } from './phone/phone-add/phone-add.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { AutofocusDirective } from './shared/directives/autofocus.directive';
     HomeComponent,
     RegisterComponent,
     MessageComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    PhoneListComponent,
+    PhoneDetailsComponent,
+    PhoneAddComponent
   ],
   imports: [
     BrowserModule,

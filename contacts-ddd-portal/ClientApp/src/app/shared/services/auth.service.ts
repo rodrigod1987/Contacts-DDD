@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../model/User';
 import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -40,11 +40,16 @@ export class AuthService {
 
   }
 
-  logout() {
+  logout(url?: string) {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
 
-    this.router.navigate(["/login"]);
+    debugger;
+
+    if (url)
+      this.router.navigate(["/login"], { queryParams: { returnUrl: url }});
+    else
+      this.router.navigate(["/home"]);
   }
 
   getCurrentUser() : User {

@@ -1,0 +1,15 @@
+<div *ngIf="phones">
+  <h3>Phones</h3>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let phone of phones">
+      <label>
+        Id:
+        <input type="tel" class="form-control" [(ngModel)]="phone.id" disabled>
+      </label>
+      <label>
+        Phone:
+        <input type="tel" class="form-control" [(ngModel)]="phone.number" disabled>
+      </label>
+    </li>
+  </ul>
+</div>

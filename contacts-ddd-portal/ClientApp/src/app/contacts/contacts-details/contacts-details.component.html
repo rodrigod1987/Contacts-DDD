@@ -13,22 +13,8 @@
           Name:
           <input type="text" class="form-control" [(ngModel)]="contact.name" placeholder="Name"/>
         </label>
-        <div *ngIf="contact.phones">
-          <h3>Phones</h3>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let phone of contact.phones">
-              <label>
-                Id:
-                <input type="tel" class="form-control" [(ngModel)]="phone.id" disabled>
-              </label>
-              <label>
-                Phone:
-                <input type="tel" class="form-control" [(ngModel)]="phone.number" disabled>
-              </label>
-            </li>
-          </ul>
-        </div>
-    </div>
+      </div>
+    <app-phone-list></app-phone-list>
     <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-arrow-left"></i></button>&nbsp;
     <button class="btn btn-success" (click)="edit()"><i class="fa fa-save"></i></button>
   </div>
