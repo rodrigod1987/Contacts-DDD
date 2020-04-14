@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'ClientApp';
   isCollapsed = true;
+  today = new Date();
 
   constructor(private authService: AuthService) {}
 

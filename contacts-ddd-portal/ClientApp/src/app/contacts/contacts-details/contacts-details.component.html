@@ -1,21 +1,27 @@
 <div class="container">
   <div *ngIf="contact">
-    <h3>Contact</h3>
+    <h3>
+      <button class="btn btn-outline-success" routerLink="/contacts/new"><i class="fa fa-plus-circle"></i></button>&nbsp;
+      Contact
+    </h3>
     <h2>{{contact.name}}</h2>
-    <div>
-      <label>
-        Id:
+    <div class="row">
+      <div class="col-2">
+        <label><strong>Id</strong></label>
         <input type="text" class="form-control" [(ngModel)]="contact.id" disabled>
-      </label>
-    </div>
-    <div>
-        <label>
-          Name:
-          <input type="text" class="form-control" [(ngModel)]="contact.name" placeholder="Name"/>
-        </label>
       </div>
+      <div class="col-10">
+        <label><strong>Name</strong></label>
+        <input type="text" class="form-control" [(ngModel)]="contact.name" placeholder="Name"/>
+      </div>
+    </div>
+
+    <hr>
+
     <app-phone-list></app-phone-list>
-    <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-arrow-left"></i></button>&nbsp;
-    <button class="btn btn-success" (click)="edit()"><i class="fa fa-save"></i></button>
+
+    <button class="btn btn-success" (click)="edit()"><i class="fa fa-save"></i></button>&nbsp;
+    <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
+
   </div>
 </div>

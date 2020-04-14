@@ -12,16 +12,16 @@ export class ContactDetailsComponent implements OnInit {
 
   @Input() contact : Contact;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private activatedRoute: ActivatedRoute,
     private contactService: ContactService,
-    private navigation: Router) { }
+    private route: Router) { }
 
   ngOnInit(): void {
     this.getContact();
   }
 
   getContact(): void {
-    const id =+ this.route.snapshot.paramMap.get('id');
+    const id =+ this.activatedRoute.snapshot.paramMap.get('id');
     this.contactService
       .getContact(id)
       .subscribe(contact => this.contact = contact);
@@ -33,7 +33,7 @@ export class ContactDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.navigation.navigate(['/contacts']);
+    this.route.navigate(['/contacts']);
   }
 
 }

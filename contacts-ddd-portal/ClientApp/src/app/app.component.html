@@ -42,14 +42,14 @@
 <main role="main">
 
   <router-outlet></router-outlet>
-  <!--<app-message></app-message>-->
+  <app-message></app-message>
 
 </main>
 
 <footer>
-  <div class="container">
+  <div style="margin: 8px;">
     <hr>
-    <p>&copy; RD Informática 2019</p>
+    <p>&copy; RD Informática {{today | date:'mediumDate'}}</p>
   </div>
 </footer>
 

@@ -1,9 +1,9 @@
 import { Component, OnInit, TemplateRef, AfterViewInit } from '@angular/core';
 import { Contact } from '../../shared/model/Contact';
 import { ContactService } from '../../shared/services/contact.service';
-import { PagerService } from 'src/app/shared/services/pager.service';
-import { Page } from 'src/app/shared/model/Page';
-import { Pager } from 'src/app/shared/model/Pager';
+import { PagerService } from '../../shared/services/pager.service';
+import { Page } from '../../shared/model/Page';
+import { Pager } from '../../shared/model/Pager';
 
 @Component({
   selector: 'app-contacts',
@@ -46,10 +46,12 @@ export class ContactsComponent implements OnInit {
   }
 
   setPage(page: number) {
-    // get pager object from service
-    this.pager = this.pagerService.getPager(this.pageResponse.totalPages, this.pageResponse.totalElements, page, this.pageResponse.size);
+    this.pager = this.pagerService
+      .getPager(this.pageResponse.totalPages,
+        this.pageResponse.totalElements,
+        page,
+        this.pageResponse.size);
 
-    // get current page of items
     this.pagedItems = this.pageResponse.content;
   }
 
@@ -77,6 +79,14 @@ export class ContactsComponent implements OnInit {
   lastPage() {
     if (this.pageResponse && !this.pageResponse.last)
       this.getContacts(this.pager.totalPages - 1);
+  }
+
+  isLastPage() : boolean {
+    return this.pager.currentPage === this.pager.totalPages - 1;
+  }
+
+  isFirstPage() : boolean {
+    return this.pager.currentPage === 0;
   }
 
 }

@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { HandleError } from '../handlers/handle-error';
+import { HandleError } from "../handlers/handle-error";
 import { Router } from '@angular/router';
 import { Page } from '../model/Page';
 
@@ -23,7 +23,6 @@ export class ContactService {
   getContact(id: number): Observable<Contact> {
     return this.httpClient.get<Contact>(`${this.contactsUrl}/${id}`)
       .pipe(
-        tap(_ => this.messageService.log(`ContactService: fetched contact with id ${id}.`)),
         catchError(this.handleError.handle<Contact>(`getContact id=${id}`))
       );
   }
@@ -31,7 +30,6 @@ export class ContactService {
   getContacts(page: number = 0): Observable<Page<Contact>> {
     return this.httpClient.get<Page<Contact>>(`${this.contactsUrl}?page=${page}`)
       .pipe(
-        tap(_ => this.messageService.log("ContactService: fetched all rows from server.")),
         catchError(this.handleError.handle<Page<Contact>>('getContacts'))
       );
   }
@@ -43,7 +41,7 @@ export class ContactService {
         catchError(this.handleError.handle<Contact>("save")))
       .subscribe(x => {
         contact = x;
-        this.router.navigate(['/contacts']);
+        this.router.navigate([`/contacts/edit/${contact.id}`]);
       });
   }
 
@@ -54,14 +52,14 @@ export class ContactService {
         catchError(this.handleError.handle<Contact>("edit")))
       .subscribe(x => {
         contact = x;
-        this.router.navigate(['/contacts']);
+        this.router.navigate([`/contacts/edit/${contact.id}`]);
       });
   }
 
   delete(id: number) : void {
     this.httpClient.delete<any>(`${this.contactsUrl}/${id}`)
       .pipe(
-        tap(_ => this.messageService.log(`Contact ${id} removed successfully.`)),
+        tap(_ => this.messageService.log(`Contact removed successfully.`)),
         catchError(this.handleError.handle<Contact>("delete")))
       .subscribe(() => { location.reload() });
   }

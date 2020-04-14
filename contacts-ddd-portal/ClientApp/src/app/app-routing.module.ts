@@ -7,6 +7,8 @@ import { AuthGuard } from './shared/guard/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactsAddComponent } from './contacts/contacts-add/contacts-add.component';
+import { PhoneAddComponent } from './phone/phone-add/phone-add.component';
+import { PhoneDetailsComponent } from './phone/phone-details/phone-details.component';
 
 
 const routes: Routes = [
@@ -16,7 +18,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuard] },
   { path: 'contacts/edit/:id', component: ContactDetailsComponent, canActivate: [AuthGuard] },
-  { path: 'contacts/new', component: ContactsAddComponent, canActivate: [AuthGuard] }
+  { path: 'contacts/new', component: ContactsAddComponent, canActivate: [AuthGuard] },
+  { path: 'contacts/edit/:id/phone/new', component: PhoneAddComponent, canActivate: [AuthGuard] },
+  { path: 'contacts/edit/:id/phone/edit/:phoneId', component: PhoneDetailsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

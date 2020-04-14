@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Register</h1>
-  <form (ngSubmit)="save()">
+  <form>
     <div class="row">
       <div class="col-6">
         <div class="form-group">
@@ -12,9 +12,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary">Submit</button> &nbsp;
-    <button class="btn btn-outline-info" (click)="goBack()">
-      <i class="fa fa-arrow-left"></i> Go back
-    </button>
+    <button class="btn btn-success" (click)="save()"><i class="fa fa-save"></i></button>&nbsp;
+    <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
   </form>
 </div>

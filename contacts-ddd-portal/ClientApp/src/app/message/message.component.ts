@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MessageService } from '../shared/services/message.service';
 
 @Component({
@@ -6,11 +6,22 @@ import { MessageService } from '../shared/services/message.service';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit {
+export class MessageComponent implements OnInit, OnDestroy {
+
+  private intervalId: any;
 
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.intervalId = setTimeout(() => this.close(), 5000);
+  }
+
+  ngOnDestroy() {
+    clearTimeout(this.intervalId);
+  }
+
+  close() {
+    this.messageService.remove();
   }
 
 }
