@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import br.com.rodrigo.contacts.domain.model.Type;
+import br.com.rodrigo.contacts.domain.model.PhoneType;
 
 @JsonInclude(value = Include.NON_NULL)
 public class PhoneDto implements Serializable {
@@ -17,7 +17,7 @@ public class PhoneDto implements Serializable {
 	private static final long serialVersionUID = 5967855942607751674L;
 	private long id;
 	private long number;
-	private Type type;
+	private PhoneType type;
 	@JsonBackReference
 	private ContactDto contact;
 		
@@ -37,11 +37,11 @@ public class PhoneDto implements Serializable {
 		this.number = number;
 	}
 	
-	public Type getType() {
+	public PhoneType getType() {
 		return type;
 	}
 	
-	public void setType(Type type) {
+	public void setType(PhoneType type) {
 		this.type = type;
 	}
 	

@@ -11,8 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PhoneDetailsComponent implements OnInit {
 
-  //phoneTypes = Object.keys(PhoneType).map(k => ({key: k, value: PhoneType[k as any]}));
-
   @Input() phone: Phone;
 
   constructor(private phoneService: PhoneService,
@@ -26,15 +24,22 @@ export class PhoneDetailsComponent implements OnInit {
   private getContact() {
     let phoneId =+ this.activatedRoute.snapshot.paramMap.get('phoneId');
     this.phoneService.getPhone(phoneId)
-      .subscribe(p => { this.phone = p; });
+      .subscribe(phone => { this.phone = phone; });
   }
 
   edit(): void {
-    this.phoneService.edit(this.phone);
+    this.phoneService
+      .edit(this.phone)
+      .subscribe((phone: Phone) => {
+        console.log(phone);
+
+        this.phone = phone;
+        this.route.navigate(['contacts/edit', this.phone.contact.id]);
+      });
   }
 
   goBack() : void {
-    this.route.navigate([`/contacts/edit/${this.phone.contact.id}`]);
+    this.route.navigate(['contacts/edit', this.phone.contact.id]);
   }
 
   keys() : Array<string> {

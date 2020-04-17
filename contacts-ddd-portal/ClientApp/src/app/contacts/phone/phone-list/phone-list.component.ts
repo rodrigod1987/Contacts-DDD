@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Phone } from 'src/app/shared/model/Phone';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PhoneService } from 'src/app/shared/services/phone.service';
-import { Contact } from 'src/app/shared/model/Contact';
 
 @Component({
   selector: 'app-phone-list',
@@ -22,12 +21,15 @@ export class PhoneListComponent implements OnInit {
 
   private getPhones() {
     let id = this.router.snapshot.paramMap.get('id');
-    this.phoneService.getPhones(id)
-      .subscribe(p => this.phones = p);
+    this.phoneService
+      .getPhones(id)
+      .subscribe(phones => this.phones = phones);
   }
 
   delete(id: number) {
-    this.phoneService.delete(id);
+    this.phoneService
+      .delete(id)
+      .subscribe(() => { location.reload(); });
   }
 
 }

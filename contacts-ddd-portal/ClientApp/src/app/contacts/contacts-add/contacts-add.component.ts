@@ -17,17 +17,22 @@ export class ContactsAddComponent implements OnInit {
   };
 
   constructor(private contactService: ContactService,
-    private navigation: Router) { }
+    private route: Router) { }
 
   ngOnInit(): void {
   }
 
   save(): void {
-    this.contactService.save(this.contact);
+    this.contactService
+      .save(this.contact)
+      .subscribe(contact => {
+        this.contact = contact;
+        this.route.navigate(['contacts/edit', this.contact.id]);
+      });
   }
 
   goBack(): void {
-    this.navigation.navigate(['/contacts']);
+    this.route.navigate(['/contacts']);
   }
 
 }

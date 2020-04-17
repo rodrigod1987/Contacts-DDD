@@ -6,6 +6,7 @@ import { MessageService } from './message.service';
 import { tap, catchError, map, mapTo } from 'rxjs/operators';
 import { HandleError } from "../handlers/handle-error";
 import { Router } from '@angular/router';
+import { PhoneType } from '../enums/phone-type';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,6 @@ export class PhoneService {
 
   constructor(private http: HttpClient,
     private messageService: MessageService,
-    private route: Router,
     private error: HandleError) { }
 
   getPhones(contactId: string): Observable<Phone[]> {
@@ -33,37 +33,31 @@ export class PhoneService {
       );
   }
 
-  save(phone: Phone) :void {
-    this.http.post(this.phonesUrl, JSON.stringify(phone))
+  save(phone: Phone) {
+    return this.http.post(this.phonesUrl, JSON.stringify(phone))
       .pipe(
         tap(_ => this.messageService.log(`Phone was added successfully.`)),
         catchError(this.error.handle('save'))
-      )
-      .subscribe((p: Phone) => {
-        phone = p;
-        this.route.navigate([`/contacts/edit/${phone.contact.id}`]);
-      });
+      );
   }
 
-  edit(phone: Phone) : void {
-    this.http.put(`${this.phonesUrl}/${phone.id}`, JSON.stringify(phone))
+  edit(phone: Phone) {
+    return this.http.put(`${this.phonesUrl}/${phone.id}`, JSON.stringify(phone))
     .pipe(
       tap(_ => this.messageService.log(`Phone was edited successfully.`)),
       catchError(this.error.handle('edit'))
-    )
-    .subscribe((p: Phone) => {
-      phone = p;
-      this.route.navigate([`/contacts/edit/${phone.contact.id}`]);
-    });
+    );
   }
 
-  delete(id: number) : void {
-    this.http.delete(`${this.phonesUrl}/${id}`)
+  delete(id: number) {
+    return this.http.delete(`${this.phonesUrl}/${id}`)
       .pipe(
         tap(_ => this.messageService.log(`Phone was deleted successfully.`))
-      )
-      .subscribe(() => {
-        location.reload();
-      });
+      );
+  }
+
+  getPhoneTypes() : Array<string> {
+    var keys = Object.keys(PhoneType);
+    return keys.slice(keys.length / 2);
   }
 }

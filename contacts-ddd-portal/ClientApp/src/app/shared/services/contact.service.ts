@@ -17,8 +17,7 @@ export class ContactService {
 
   constructor(private httpClient: HttpClient,
     private messageService: MessageService,
-    private handleError: HandleError,
-    private router: Router) { }
+    private handleError: HandleError) { }
 
   getContact(id: number): Observable<Contact> {
     return this.httpClient.get<Contact>(`${this.contactsUrl}/${id}`)
@@ -34,34 +33,28 @@ export class ContactService {
       );
   }
 
-  save(contact: Contact) : void {
-    this.httpClient.post<Contact>(this.contactsUrl, JSON.stringify(contact))
+  save(contact: Contact) {
+    return this.httpClient.post<Contact>(this.contactsUrl, JSON.stringify(contact))
       .pipe(
         tap(_ => this.messageService.log("Contact included succesfully.")),
-        catchError(this.handleError.handle<Contact>("save")))
-      .subscribe(x => {
-        contact = x;
-        this.router.navigate([`/contacts/edit/${contact.id}`]);
-      });
+        catchError(this.handleError.handle<Contact>("save"))
+      );
   }
 
-  edit(contact: Contact) : void {
-    this.httpClient.put<Contact>(`${this.contactsUrl}/${contact.id}`, JSON.stringify(contact))
+  edit(contact: Contact) {
+    return this.httpClient.put<Contact>(`${this.contactsUrl}/${contact.id}`, JSON.stringify(contact))
       .pipe(
         tap(_ => this.messageService.log("Contact edited succesfully.")),
-        catchError(this.handleError.handle<Contact>("edit")))
-      .subscribe(x => {
-        contact = x;
-        this.router.navigate([`/contacts/edit/${contact.id}`]);
-      });
+        catchError(this.handleError.handle<Contact>("edit"))
+      );
   }
 
-  delete(id: number) : void {
-    this.httpClient.delete<any>(`${this.contactsUrl}/${id}`)
+  delete(id: number) {
+    return this.httpClient.delete<any>(`${this.contactsUrl}/${id}`)
       .pipe(
         tap(_ => this.messageService.log(`Contact removed successfully.`)),
-        catchError(this.handleError.handle<Contact>("delete")))
-      .subscribe(() => { location.reload() });
+        catchError(this.handleError.handle<Contact>("delete"))
+      );
   }
 
 }

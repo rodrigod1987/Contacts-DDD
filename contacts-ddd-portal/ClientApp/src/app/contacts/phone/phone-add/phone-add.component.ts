@@ -33,23 +33,28 @@ export class PhoneAddComponent implements OnInit {
   }
 
   save(): void {
-    this.phoneService.save(this.phone);
+    this.phoneService
+      .save(this.phone)
+      .subscribe((phone: Phone) => {
+        this.phone = phone;
+        this.route.navigate([`/contacts/edit/${phone.contact.id}`]);
+      });
   }
 
   getContact() : void {
-    this.contactService.getContact(this.contactId)
+    this.contactService
+      .getContact(this.contactId)
       .subscribe(contact => {
         this.phone.contact = contact;
       });
   }
 
   goBack(): void {
-    this.route.navigate([`/contacts/edit/${this.contactId}`]);
+    this.route.navigate(['contacts/edit', this.contactId]);
   }
 
   keys() : Array<string> {
-    var keys = Object.keys(PhoneType);
-    return keys.slice(keys.length / 2);
+    return this.phoneService.getPhoneTypes();
   }
 
 }

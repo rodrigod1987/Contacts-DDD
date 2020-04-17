@@ -13,6 +13,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+/**
+ * @author rodrigo.duarte
+ *
+ *	Class responsible to generate a json web token (JWT)
+ */
 @Component
 public class JwtToken implements Serializable {
 
@@ -25,15 +30,26 @@ public class JwtToken implements Serializable {
 	
 	private final String secret = "contactsddd";
 	
+	/**
+	 * Get the username content of a given token
+	 * @param token
+	 * @return
+	 */
 	public String getUserNameFrom(String token) {
 		return getClaimFrom(token, t -> t.getSubject());
 	}
 	
+	
+	/**
+	 * Get the expiration date of a given token 
+	 * @param token
+	 * @return
+	 */
 	public Date getExpirationFrom(String token) {
 		return getClaimFrom(token, t -> t.getExpiration());
 	}
 	
-	public <T> T getClaimFrom(String token, Function<Claims, T> claimsResolver) {
+	private <T> T getClaimFrom(String token, Function<Claims, T> claimsResolver) {
 		final Claims claims = getAllClaimsFrom(token);
 		return claimsResolver.apply(claims);
 	}
@@ -49,6 +65,11 @@ public class JwtToken implements Serializable {
 		return expiration.before(new Date());
 	}
 	
+	/**
+	 * Generate the token based on the giver user details
+	 * @param userDetails
+	 * @return
+	 */
 	public String generate(UserDetails userDetails) {
 		Map<String, Object> claims = new HashMap<>();
 		return generateToken(claims, userDetails.getUsername());
@@ -64,6 +85,12 @@ public class JwtToken implements Serializable {
 				.compact();
 	}
 	
+	/**
+	 * Verify if the given token and user details are valid
+	 * @param token
+	 * @param userDetails
+	 * @return
+	 */
 	public boolean isValid(String token, UserDetails userDetails) {
 		final String username = getUserNameFrom(token);
 		return username.equals(userDetails.getUsername()) && !isExpired(token);

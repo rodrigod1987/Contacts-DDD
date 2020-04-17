@@ -6,44 +6,29 @@ import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { ContactsComponent } from './contacts/contacts-list/contacts.component';
-import { ContactDetailsComponent } from './contacts/contacts-details/contacts-details.component';
-import { ContactsAddComponent} from './contacts/contacts-add/contacts-add.component';
 import { ApiInterceptor } from './shared/intercept/api.interceptor';
 
 import { environment } from 'src/environments/environment';
 import { ApiAuthInterceptor } from './shared/intercept/api-auth.interceptor';
 import { ErrorInterceptor } from './shared/intercept/error.interceptor';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
 import { MessageComponent } from './message/message.component';
-import { AutofocusDirective } from './shared/directives/autofocus.directive';
-import { PhoneListComponent } from './phone/phone-list/phone-list.component';
-import { PhoneDetailsComponent } from './phone/phone-details/phone-details.component';
-import { PhoneAddComponent } from './phone/phone-add/phone-add.component';
+import { ContactModule } from './contacts/contact.module';
+import { HomeModule } from './home/home.module';
+import { ComponentsModule } from './shared/components/components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    ContactsComponent,
-    ContactDetailsComponent,
-    ContactsAddComponent,
-    HomeComponent,
-    RegisterComponent,
-    MessageComponent,
-    AutofocusDirective,
-    PhoneListComponent,
-    PhoneDetailsComponent,
-    PhoneAddComponent
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HomeModule,
+    ContactModule,
+    ComponentsModule
   ],
   providers: [
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },

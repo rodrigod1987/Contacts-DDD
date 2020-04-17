@@ -28,8 +28,12 @@ export class ContactDetailsComponent implements OnInit {
   }
 
   edit() : void {
-    debugger;
-    this.contactService.edit(this.contact);
+    this.contactService
+      .edit(this.contact)
+      .subscribe(contact => {
+        this.contact = contact;
+        this.route.navigate(['contacts/edit', this.contact.id]);
+      });
   }
 
   goBack(): void {

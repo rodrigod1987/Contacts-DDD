@@ -3,7 +3,7 @@
   <form *ngIf="phone">
     <div>
       <label>Number:</label>
-      <input type="text" name="number" [(ngModel)]="phone.number" id="" class="form-control">
+      <input type="text" name="number" [(ngModel)]="phone.number" ap-autofocus class="form-control">
     </div>
 
     <div>
@@ -15,7 +15,7 @@
 
     <hr>
 
-    <button class="btn btn-success" (click)="edit()"><i class="fa fa-save"></i></button>&nbsp;
+    <button class="btn btn-success mr-1" (click)="edit()"><i class="fa fa-save"></i></button>
     <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
 
   </form>

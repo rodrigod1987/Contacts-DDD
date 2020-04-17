@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { AuthService } from './shared/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,22 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'ClientApp';
-  isCollapsed = true;
+
   today = new Date();
 
-  constructor(private authService: AuthService) {}
-
   ngOnInit(): void {
-  }
-
-  logout() {
-    this.authService.logout();
-    this.isCollapsed = true;
-  }
-
-  getLoggedUser() {
-    return this.authService.getCurrentUser();
   }
 
 }

@@ -4,7 +4,6 @@ import { User } from '../model/User';
 import { tap, catchError, map } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HandleError } from "../handlers/handle-error";
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +14,13 @@ export class RegisterService {
 
   constructor(private httpClient: HttpClient,
     private messageService: MessageService,
-    private handleError: HandleError,
-    private router: Router) { }
+    private handleError: HandleError) { }
 
   save(user: User) {
     return this.httpClient.post<User>(this.userUrl, JSON.stringify(user))
       .pipe(
         tap(_ => this.messageService.log("User signup successfully.")),
         catchError(this.handleError.handle<User>('save'))
-      )
-      .subscribe(() => { this.router.navigate(['/home']) })
+      );
   }
 }

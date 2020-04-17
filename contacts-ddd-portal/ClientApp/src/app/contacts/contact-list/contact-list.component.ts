@@ -1,16 +1,21 @@
-import { Component, OnInit, TemplateRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { Contact } from '../../shared/model/Contact';
 import { ContactService } from '../../shared/services/contact.service';
 import { PagerService } from '../../shared/services/pager.service';
 import { Page } from '../../shared/model/Page';
 import { Pager } from '../../shared/model/Pager';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.css']
+  templateUrl: './contact-list.component.html',
+  styleUrls: ['./contact-list.component.css']
 })
-export class ContactsComponent implements OnInit {
+export class ContactListComponent implements OnInit, OnDestroy {
+
+  filter: string = '';
+  debounce: Subject<string> = new Subject<string>();
 
   private pageResponse : Page<Contact>;
 
@@ -18,13 +23,20 @@ export class ContactsComponent implements OnInit {
   pager: Pager;
 
   // paged items
-  pagedItems: any[];
+  pagedItems: Contact[];
 
   constructor(private contactService: ContactService,
     private pagerService: PagerService) { }
 
   ngOnInit(): void {
     this.getContacts();
+    this.debounce
+      .pipe(debounceTime(300))
+      .subscribe(filter => this.filter = filter);
+  }
+
+  ngOnDestroy(): void {
+    this.debounce.unsubscribe();
   }
 
   getContacts(page: number = 0) : void {
@@ -32,17 +44,19 @@ export class ContactsComponent implements OnInit {
       .getContacts(page)
       .subscribe((response) => {
         this.pageResponse = response;
-
-        // initialize to page 0
-        this.setPage(page);
       }, (error) => {
         console.log(error)
+      },
+      () => {
+        // initialize to page 0
+        this.setPage(page);
       });
   }
 
   delete(id: number) : void {
     this.contactService
-      .delete(id);
+      .delete(id)
+      .subscribe(() => { location.reload() });
   }
 
   setPage(page: number) {

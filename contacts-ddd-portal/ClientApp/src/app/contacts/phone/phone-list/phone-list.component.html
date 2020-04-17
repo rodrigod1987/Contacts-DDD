@@ -1,6 +1,6 @@
 <div *ngIf="phones">
   <h3>
-    <button class="btn btn-outline-success" routerLink="phone/new"><i class="fa fa-plus-circle"></i></button>&nbsp;
+    <button class="btn btn-outline-success mr-1" routerLink="phone/new"><i class="fa fa-plus-circle"></i></button>
     Phones
   </h3>
 
@@ -19,7 +19,7 @@
         <div class="col-4">{{phone.number}}</div>
         <div class="col-4">{{phone.type}}</div>
         <div class="col-2">
-          <button class="btn btn-primary" routerLink="/contacts/edit/{{phone.contact.id}}/phone/edit/{{phone.id}}"><i class="fa fa-edit"></i></button>&nbsp;
+          <button class="btn btn-primary mr-1" [routerLink]="['/contacts/edit/', phone.contact.id, 'phone', 'edit', phone.id]"><i class="fa fa-edit"></i></button>
           <button class="btn btn-outline-danger" (click)="delete(phone.id)"><i class="fa fa-remove"></i></button>
         </div>
       </div>

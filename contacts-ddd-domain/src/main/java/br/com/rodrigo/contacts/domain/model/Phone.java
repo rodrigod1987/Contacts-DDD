@@ -11,12 +11,12 @@ import javax.persistence.ManyToOne;
 public class Phone {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private long number;
-	private Type type;
+	private PhoneType type;
 	@ManyToOne
-	@JoinColumn(name = "contactId")
+	@JoinColumn(name = "contactId", nullable = false)
 	private Contact contact;
 
 	public long getId() {
@@ -35,11 +35,11 @@ public class Phone {
 		this.number = number;
 	}
 	
-	public Type getType() {
+	public PhoneType getType() {
 		return type;
 	}
 	
-	public void setType(Type type) {
+	public void setType(PhoneType type) {
 		this.type = type;
 	}
 	

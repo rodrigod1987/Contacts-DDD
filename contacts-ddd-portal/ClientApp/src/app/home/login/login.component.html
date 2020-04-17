@@ -1,0 +1,41 @@
+
+<div class="row text-center justify-content-center">
+  <div class="col-md-6">
+    <h1>Contacts DDD</h1>
+    <form [formGroup]="form" (ngSubmit)="login()" class="form-signin">
+      <h3 class="h3 mb-3 font-weight-normal">Login</h3>
+      <div class="form-group">
+        <input type="text"
+          formControlName="userName"
+          class="form-control"
+          placeholder="Username"
+          name="username"
+          ap-autofocus />
+        <small class="text-danger d-block mt-2"
+          *ngIf="form.get('userName').errors?.required">
+          *Username is required!
+        </small>
+      </div>
+      <div class="form-group">
+        <input type="password"
+          formControlName="password"
+          class="form-control"
+          placeholder="Password"
+          name="password">
+          <small class="text-danger d-block mt-2"
+            *ngIf="form.get('password').errors?.required">
+            *Password is required!
+          </small>
+      </div>
+      <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block">Login</button>
+      <a class="btn btn-lg btn-danger btn-block" routerLink="../register">Signup</a>
+    </form>
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+  </div>
+</div>

@@ -1,12 +1,13 @@
-<div class="container">
-  <h3>Contact</h3>
-  <div>
-    <label>
-      Name:
-      <input type="text"  class="form-control" [(ngModel)]="contact.name" appAutofocus/>
-    </label>
-  </div>
-  <hr>
-  <button class="btn btn-success" (click)="save()"><i class="fa fa-save"></i></button>&nbsp;
-  <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
+<h3>Contact</h3>
+
+<div>
+  <label>
+    Name:
+    <input type="text"  class="form-control" [(ngModel)]="contact.name" ap-autofocus />
+  </label>
 </div>
+
+<hr>
+
+<button class="btn btn-success mr-1" (click)="save()"><i class="fa fa-save"></i></button>
+<button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
