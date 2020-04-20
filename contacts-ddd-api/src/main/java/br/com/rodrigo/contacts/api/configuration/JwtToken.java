@@ -36,7 +36,7 @@ public class JwtToken implements Serializable {
 	 * @return
 	 */
 	public String getUserNameFrom(String token) {
-		return getClaimFrom(token, t -> t.getSubject());
+		return getClaimFrom(token, t -> t.get("userName", String.class));
 	}
 	
 	
@@ -55,7 +55,8 @@ public class JwtToken implements Serializable {
 	}
 	
 	private Claims getAllClaimsFrom(String token) {
-		return Jwts.parser().setSigningKey(secret)
+		return Jwts.parser()
+				.setSigningKey(secret)
 				.parseClaimsJws(token)
 				.getBody();
 	}
@@ -72,13 +73,17 @@ public class JwtToken implements Serializable {
 	 */
 	public String generate(UserDetails userDetails) {
 		Map<String, Object> claims = new HashMap<>();
-		return generateToken(claims, userDetails.getUsername());
+		
+		claims.put("userName", userDetails.getUsername());
+		claims.put("createdOn", new Date(System.currentTimeMillis()).toString());
+		claims.put("expiresOn", new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY).toString());
+		
+		return generateToken(claims);
 	}
 	
-	private String generateToken(Map<String, Object> claims, String subject) {
+	private String generateToken(Map<String, Object> claims) {
 		return Jwts.builder()
 				.setClaims(claims)
-				.setSubject(subject)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
 				.signWith(SignatureAlgorithm.HS512, secret)

@@ -12,19 +12,19 @@
           <a class="nav-link" (click)="goHome()">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="goContacts()" *ngIf="getLoggedUser()">Contacts</a>
+          <a class="nav-link" (click)="goContacts()" *ngIf="user">Contacts</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" *ngIf="!getLoggedUser()">
+      <form class="form-inline my-2 my-lg-0" *ngIf="!user">
         <a class="btn btn-success my-2 my-sm-0" (click)="goLogin()">Login</a>
       </form>
-      <form class="form-inline my-2 my-lg-0" *ngIf="getLoggedUser()">
+      <form class="form-inline my-2 my-lg-0" *ngIf="user">
         <ul class="navbar-nav mr-auto form-inline">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"
               id="navbarDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Olá, {{getLoggedUser().userName}}
+              Olá, {{user.userName}}
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <button class="dropdown-item" (click)="goAccount()">

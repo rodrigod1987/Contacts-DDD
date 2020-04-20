@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RegisterService } from '../../shared/services/register.service';
-import { User } from '../../shared/model/User';
+import { User } from '../../shared/model/user';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -11,11 +11,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  @Input() user: User = {
-    userName: '',
-    password: '',
-    token: ''
-  };
+  @Input() userName: string;
+  @Input() password: string;
 
   constructor(private registerService: RegisterService,
     private route: Router,
@@ -25,9 +22,8 @@ export class RegisterComponent implements OnInit {
   }
 
   save() {
-    if (this.user.userName.length > 0 && this.user.password.length > 0)
       this.registerService
-        .save(this.user)
+        .save(this.userName, this.password)
         .subscribe(() => { this.route.navigate(['/home']) });
   }
 

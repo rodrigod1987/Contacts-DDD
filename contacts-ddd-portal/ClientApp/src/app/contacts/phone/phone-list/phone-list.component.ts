@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Phone } from 'src/app/shared/model/Phone';
+import { Phone } from 'src/app/shared/model/phone';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PhoneService } from 'src/app/shared/services/phone.service';
 

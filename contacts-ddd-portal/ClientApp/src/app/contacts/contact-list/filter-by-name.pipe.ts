@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Contact } from 'src/app/shared/model/Contact';
+import { Contact } from 'src/app/shared/model/contact';
 
 @Pipe({ name: 'filterByName'})
 export class FilterByName implements PipeTransform {

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rodrigo.contacts.api.configuration.JwtToken;
-import br.com.rodrigo.contacts.api.dto.TokenResponseDto;
 import br.com.rodrigo.contacts.api.services.ApplicationUserDetailsService;
 import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
 
@@ -36,39 +35,30 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/authenticate")
-	public ResponseEntity<TokenResponseDto> authenticate(@RequestBody ApplicationUserDto user) {
+	public ResponseEntity<String> authenticate(@RequestBody ApplicationUserDto user) {
 		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
+			authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), 
+							user.getPassword()));
 		} catch (DisabledException e) {
 			System.out.println(e.getMessage());
 			return ResponseEntity
 				.badRequest()
-				.body(new TokenResponseDto(null,
-					false, 
-					null, 
-					"Disabled user", 
-					null));
+				.body("Disabled user");
 		} catch (BadCredentialsException ex) {
 			System.out.println(ex.getMessage());
 			return ResponseEntity
 				.badRequest()
-				.body(new TokenResponseDto(null,
-					false, 
-					null, 
-					"Invalid credentials.", 
-					null));
+				.body("Invalid credentials.");
 		}
 		
-		UserDetails userDetails = applicationUserDetailsService.loadUserByUsername(user.getUserName());
+		UserDetails userDetails = this.applicationUserDetailsService
+				.loadUserByUsername(user.getUserName());
 		
 		String token = jwtToken.generate(userDetails);
 		
 		return ResponseEntity
-				.ok(new TokenResponseDto(user.getUserName(),
-						true, 
-						jwtToken.getExpirationFrom(token), 
-						"Login successfully.", 
-						token));
+				.ok(token);
 		
 	}
 	

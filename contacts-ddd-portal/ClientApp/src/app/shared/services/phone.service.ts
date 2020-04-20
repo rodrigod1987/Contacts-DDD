@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Phone } from '../model/Phone';
+import { Phone } from '../model/phone';
 import { Observable } from 'rxjs';
 import { MessageService } from './message.service';
 import { tap, catchError, map, mapTo } from 'rxjs/operators';

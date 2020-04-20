@@ -1,5 +1,5 @@
 import { PhoneType } from '../enums/phone-type';
-import { Contact } from './Contact';
+import { Contact } from './contact';
 
 export interface Phone {
     id: number,

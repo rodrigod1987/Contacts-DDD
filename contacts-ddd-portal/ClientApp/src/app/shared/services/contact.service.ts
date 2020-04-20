@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Contact } from '../model/Contact';
+import { Contact } from '../model/contact';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HandleError } from "../handlers/handle-error";
 import { Router } from '@angular/router';
-import { Page } from '../model/Page';
+import { Page } from '../model/page';
 
 @Injectable({
   providedIn: 'root'

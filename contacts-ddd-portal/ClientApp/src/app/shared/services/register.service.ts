@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../model/User';
+import { User } from '../model/user';
 import { tap, catchError, map } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { HandleError } from "../handlers/handle-error";
@@ -16,8 +16,8 @@ export class RegisterService {
     private messageService: MessageService,
     private handleError: HandleError) { }
 
-  save(user: User) {
-    return this.httpClient.post<User>(this.userUrl, JSON.stringify(user))
+  save(userName: string, password: string) {
+    return this.httpClient.post<User>(this.userUrl, JSON.stringify({userName, password}))
       .pipe(
         tap(_ => this.messageService.log("User signup successfully.")),
         catchError(this.handleError.handle<User>('save'))

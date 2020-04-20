@@ -1,5 +1,5 @@
 export interface User {
     userName : string,
-    password : string,
-    token: string
+    createdOn: Date,
+    expiresOn: Date
 }

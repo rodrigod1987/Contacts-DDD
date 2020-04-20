@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../shared/model/User';
+import { User } from '../../shared/model/user';
 import { AuthService } from '../../shared/services/auth.service';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    debugger;
     this.authService.login(this.form.get('userName').value, this.form.get('password').value)
-      .pipe(first())
       .subscribe(
         () => {
           this.router.navigate([this.returnUrl]);
