@@ -11,13 +11,11 @@ import { ApiInterceptor } from './shared/intercept/api.interceptor';
 import { environment } from 'src/environments/environment';
 import { ApiAuthInterceptor } from './shared/intercept/api-auth.interceptor';
 import { ErrorInterceptor } from './shared/intercept/error.interceptor';
-import { MessageComponent } from './message/message.component';
 import { ComponentsModule } from './shared/components/components.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MessageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

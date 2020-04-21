@@ -3,14 +3,24 @@ import { HeaderComponent } from './header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MessageComponent } from './message/message.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [
+    HeaderComponent,
+    MessageComponent,
+    FooterComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule
   ],
-  exports: [HeaderComponent]
+  exports: [
+    HeaderComponent,
+    MessageComponent,
+    FooterComponent
+  ]
 })
 export class ComponentsModule {}

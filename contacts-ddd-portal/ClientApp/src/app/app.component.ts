@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  today = new Date();
-
   ngOnInit(): void {
   }
 
