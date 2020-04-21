@@ -12,9 +12,12 @@ import { PhoneAddComponent } from './phone/phone-add/phone-add.component';
 import { FilterByName } from './contact-list/filter-by-name.pipe';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ContactRoutingModule } from './contact.routing.module';
+import { ContactComponent } from './contact.component';
 
 @NgModule({
   declarations: [
+    ContactComponent,
     ContactsAddComponent,
     ContactDetailsComponent,
     ContactListComponent,
@@ -28,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     FormsModule,
     HttpClientModule,
-    DirectivesModule
+    DirectivesModule,
+    ContactRoutingModule
   ]
 })
 export class ContactModule { }

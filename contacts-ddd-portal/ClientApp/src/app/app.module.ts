@@ -12,8 +12,6 @@ import { environment } from 'src/environments/environment';
 import { ApiAuthInterceptor } from './shared/intercept/api-auth.interceptor';
 import { ErrorInterceptor } from './shared/intercept/error.interceptor';
 import { MessageComponent } from './message/message.component';
-import { ContactModule } from './contacts/contact.module';
-import { HomeModule } from './home/home.module';
 import { ComponentsModule } from './shared/components/components.module';
 
 @NgModule({
@@ -23,12 +21,10 @@ import { ComponentsModule } from './shared/components/components.module';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    HomeModule,
-    ContactModule,
-    ComponentsModule
+    ComponentsModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },

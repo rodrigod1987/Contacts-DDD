@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HomeRoutingModule } from './home.routing.module';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
+    IndexComponent,
     LoginComponent,
     RegisterComponent
   ],
@@ -17,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
+    HomeRoutingModule
   ],
   exports: []
 })

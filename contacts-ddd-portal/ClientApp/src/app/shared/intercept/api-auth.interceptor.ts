@@ -14,7 +14,6 @@ export class ApiAuthInterceptor implements HttpInterceptor {
   constructor(private tokenService: TokenService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      debugger;
 
       // add authorization header with jwt token if available
       if (this.tokenService.hasToken()) {

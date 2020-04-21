@@ -1,6 +1,5 @@
-
 <div class="row text-center justify-content-center">
-  <div class="col-md-6">
+  <div class="col-md-6 shadow mt-4">
     <h1>Contacts DDD</h1>
     <form [formGroup]="form" (ngSubmit)="login()" class="form-signin">
       <h3 class="h3 mb-3 font-weight-normal">Login</h3>
@@ -32,7 +31,7 @@
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
       </div>
       <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block">Login</button>
-      <a class="btn btn-lg btn-danger btn-block" routerLink="../register">Signup</a>
+      <a class="btn btn-lg btn-danger btn-block" [routerLink]="['/register']">Signup</a>
     </form>
     <div *ngIf="error" class="alert alert-danger" role="alert">
       {{error}}

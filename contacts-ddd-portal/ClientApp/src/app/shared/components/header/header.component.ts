@@ -31,20 +31,4 @@ export class HeaderComponent implements OnInit {
     this.isCollapsed = true;
   }
 
-  goHome() {
-    this.route.navigate(['home']);
-  }
-
-  goContacts() {
-    this.route.navigate(['contacts']);
-  }
-
-  goLogin() {
-    this.route.navigate(['login']);
-  }
-
-  goAccount() {
-    this.route.navigate(['account']);
-  }
-
 }

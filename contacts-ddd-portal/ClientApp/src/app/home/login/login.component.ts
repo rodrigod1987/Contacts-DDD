@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    debugger;
+
     this.authService.login(this.form.get('userName').value, this.form.get('password').value)
       .subscribe(
         () => {
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         },
         error => { this.error = error; }
       );
+
   }
 
 }

@@ -1,5 +1,5 @@
 <h2>
-  <button class="btn btn-outline-success mr-1" routerLink="/contacts/new"> <i class="fa fa-plus-circle"></i></button>
+  <button class="btn btn-outline-success mr-1" [routerLink]="['new']"> <i class="fa fa-plus-circle"></i></button>
   Contacts</h2>
 <hr>
 <div *ngIf="!pagedItems">Loading...</div>
@@ -46,7 +46,7 @@
         <th>{{contact.id}}</th>
         <td>{{contact.name}}</td>
         <td style="text-align: right;">
-          <button class="btn btn-primary mr-1" [routerLink]="['/contacts/edit', contact.id]"> <i class="fa fa-edit"></i></button>
+          <button class="btn btn-primary mr-1" [routerLink]="['edit', contact.id]"> <i class="fa fa-edit"></i></button>
           <button class="btn btn-outline-danger" (click)="delete(contact.id)"> <i class="fa fa-remove"></i></button>
         </td>
       </tr>

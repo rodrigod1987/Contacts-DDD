@@ -1,7 +1,6 @@
-
 <header class="fixed-top">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">{{title}}</a>
+    <a class="navbar-brand" [routerLink]="['home']">{{title}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,35 +8,40 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" (click)="goHome()">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" [routerLink]="['home']">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="goContacts()" *ngIf="user">Contacts</a>
+          <a class="nav-link" [routerLink]="['contacts']" *ngIf="user">Contacts</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" *ngIf="!user">
-        <a class="btn btn-success my-2 my-sm-0" (click)="goLogin()">Login</a>
-      </form>
-      <form class="form-inline my-2 my-lg-0" *ngIf="user">
-        <ul class="navbar-nav mr-auto form-inline">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"
-              id="navbarDropdown" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Olá, {{user.userName}}
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <button class="dropdown-item" (click)="goAccount()">
-                <i class="fa fa-user-circle"></i> Account
-              </button>
-              <div class="dropdown-divider"></div>
-              <button class="dropdown-item" (click)="logout()">
-                <i class="fa fa-sign-out"></i> Exit
-              </button>
-            </div>
-          </li>
-        </ul>
-      </form>
+      <div *ngIf="!user; else navbar">
+        <form class="form-inline my-2 my-lg-0" >
+          <a class="btn btn-success my-2 my-sm-0" [routerLink]="['home/login']">Login</a>
+        </form>
+      </div>
     </div>
   </nav>
 </header>
+
+<ng-template #navbar>
+  <form class="form-inline my-2 my-lg-0" *ngIf="user">
+    <ul class="navbar-nav mr-auto form-inline">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"
+          id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Olá, {{user.userName}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item" [routerLink]="['account']">
+            <i class="fa fa-user-circle"></i> Account
+          </button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" (click)="logout()">
+            <i class="fa fa-sign-out"></i> Exit
+          </button>
+        </div>
+      </li>
+    </ul>
+  </form>
+</ng-template>
