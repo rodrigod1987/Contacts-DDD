@@ -19,7 +19,7 @@ export class RegisterService {
   save(userName: string, password: string) {
     return this.httpClient.post<User>(this.userUrl, JSON.stringify({userName, password}))
       .pipe(
-        tap(_ => this.messageService.log("User signup successfully.")),
+        tap(_ => this.messageService.success("User signup successfully.")),
         catchError(this.handleError.handle<User>('save'))
       );
   }

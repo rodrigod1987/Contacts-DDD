@@ -36,7 +36,7 @@ export class ContactService {
   save(contact: Contact) {
     return this.httpClient.post<Contact>(this.contactsUrl, JSON.stringify(contact))
       .pipe(
-        tap(_ => this.messageService.log("Contact included succesfully.")),
+        tap(_ => this.messageService.success("Contact included succesfully.")),
         catchError(this.handleError.handle<Contact>("save"))
       );
   }
@@ -44,7 +44,7 @@ export class ContactService {
   edit(contact: Contact) {
     return this.httpClient.put<Contact>(`${this.contactsUrl}/${contact.id}`, JSON.stringify(contact))
       .pipe(
-        tap(_ => this.messageService.log("Contact edited succesfully.")),
+        tap(_ => this.messageService.success("Contact edited succesfully.")),
         catchError(this.handleError.handle<Contact>("edit"))
       );
   }
@@ -52,7 +52,7 @@ export class ContactService {
   delete(id: number) {
     return this.httpClient.delete<any>(`${this.contactsUrl}/${id}`)
       .pipe(
-        tap(_ => this.messageService.log(`Contact removed successfully.`)),
+        tap(_ => this.messageService.success(`Contact removed successfully.`)),
         catchError(this.handleError.handle<Contact>("delete"))
       );
   }

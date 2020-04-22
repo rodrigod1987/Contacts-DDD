@@ -36,7 +36,7 @@ export class PhoneService {
   save(phone: Phone) {
     return this.http.post(this.phonesUrl, JSON.stringify(phone))
       .pipe(
-        tap(_ => this.messageService.log(`Phone was added successfully.`)),
+        tap(_ => this.messageService.success(`Phone was added successfully.`)),
         catchError(this.error.handle('save'))
       );
   }
@@ -44,7 +44,7 @@ export class PhoneService {
   edit(phone: Phone) {
     return this.http.put(`${this.phonesUrl}/${phone.id}`, JSON.stringify(phone))
     .pipe(
-      tap(_ => this.messageService.log(`Phone was edited successfully.`)),
+      tap(_ => this.messageService.success(`Phone was edited successfully.`)),
       catchError(this.error.handle('edit'))
     );
   }
@@ -52,7 +52,7 @@ export class PhoneService {
   delete(id: number) {
     return this.http.delete(`${this.phonesUrl}/${id}`)
       .pipe(
-        tap(_ => this.messageService.log(`Phone was deleted successfully.`))
+        tap(_ => this.messageService.danger(`Phone was deleted successfully.`))
       );
   }
 

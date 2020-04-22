@@ -1,4 +1,4 @@
-<div *ngIf="phones">
+<div *ngIf="(phones$ | async) as phones">
   <h3>
     <button class="btn btn-outline-success mr-1" routerLink="phone/new"><i class="fa fa-plus-circle"></i></button>
     Phones

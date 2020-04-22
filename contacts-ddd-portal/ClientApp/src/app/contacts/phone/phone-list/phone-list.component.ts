@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Phone } from 'src/app/shared/model/phone';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PhoneService } from 'src/app/shared/services/phone.service';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-phone-list',
@@ -10,7 +12,8 @@ import { PhoneService } from 'src/app/shared/services/phone.service';
 })
 export class PhoneListComponent implements OnInit {
 
-  phones: Phone[];
+  phones$: Observable<Phone[]>;
+  private contactId: string;
 
   constructor(private router: ActivatedRoute,
     private phoneService: PhoneService) { }
@@ -20,16 +23,16 @@ export class PhoneListComponent implements OnInit {
   }
 
   private getPhones() {
-    let id = this.router.snapshot.paramMap.get('id');
-    this.phoneService
-      .getPhones(id)
-      .subscribe(phones => this.phones = phones);
+    this.contactId = this.router.snapshot.params.id;
+    this.phones$ = this.phoneService
+      .getPhones(this.contactId);
   }
 
   delete(id: number) {
     this.phoneService
       .delete(id)
-      .subscribe(() => { location.reload(); });
+      .pipe(switchMap(() => this.phones$ = this.phoneService.getPhones(this.contactId)))
+      .subscribe();
   }
 
 }
