@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   title = 'Contacts DDD';
   isCollapsed = true;
-  user$ : Observable<User>;
+  private user$ : Observable<User>;
   user : User;
 
   constructor(private userService: UserService,

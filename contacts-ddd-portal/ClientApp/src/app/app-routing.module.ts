@@ -4,8 +4,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
-  { path: 'contacts', loadChildren: () => import('./contacts/contact.module').then(m => m.ContactModule)},
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'contacts',
+    loadChildren: () => import('./contacts/contact.module').then(m => m.ContactModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+  }
 ];
 
 
