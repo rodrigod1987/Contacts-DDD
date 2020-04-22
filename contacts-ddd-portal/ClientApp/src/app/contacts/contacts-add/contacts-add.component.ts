@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Contact } from 'src/app/shared/model/contact';
 import { Router } from '@angular/router';
 import { ContactService } from 'src/app/shared/services/contact.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contacts-add',
@@ -10,21 +11,23 @@ import { ContactService } from 'src/app/shared/services/contact.service';
 })
 export class ContactsAddComponent implements OnInit {
 
-  @Input() public contact: Contact = {
-    id : 0,
-    name : '',
-    phones : []
-  };
+  form: FormGroup;
+  private contact: Contact;
 
-  constructor(private contactService: ContactService,
+  constructor(private fb: FormBuilder,
+    private contactService: ContactService,
     private route: Router) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      name: ['', Validators.required]
+    });
   }
 
   save(): void {
+    let contact = this.form.getRawValue() as Contact;
     this.contactService
-      .save(this.contact)
+      .save(contact)
       .subscribe(contact => {
         this.contact = contact;
         this.route.navigate(['contacts/edit', this.contact.id]);

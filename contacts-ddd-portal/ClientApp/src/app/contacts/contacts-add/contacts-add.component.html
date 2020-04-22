@@ -1,13 +1,25 @@
 <h3>Contact</h3>
 
-<div>
-  <label>
-    Name:
-    <input type="text"  class="form-control" [(ngModel)]="contact.name" ap-autofocus />
-  </label>
-</div>
+<form [formGroup]="form">
+  <div>
+    <div class="form-group">
+      <div class="col-6">
+        <label>Name
+          <div class="text-right">
+            <ap-validation-message
+              *ngIf="form.get('name').errors?.required"
+              message="Contact name is required!">
+            </ap-validation-message>
+          </div>
+        </label>
+        <input type="text" formControlName="name" name="name" class="form-control" ap-autofocus />
+      </div>
 
-<hr>
+    </div>
+  </div>
 
-<button class="btn btn-success mr-1" (click)="save()"><i class="fa fa-save"></i></button>
-<button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
+  <hr>
+
+  <button class="btn btn-success mr-1" [disabled]="form.invalid" (click)="save()"><i class="fa fa-save"></i></button>
+  <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
+</form>

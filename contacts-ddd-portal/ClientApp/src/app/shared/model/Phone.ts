@@ -1,9 +1,11 @@
 import { PhoneType } from '../enums/phone-type';
 import { Contact } from './contact';
 
-export interface Phone {
-    id: number,
-    number: number,
-    type: PhoneType,
-    contact: Contact
+export class Phone {
+
+  constructor(public id: number,
+    public number: number,
+    public type: PhoneType,
+    public contact: Contact) {}
+
 }
