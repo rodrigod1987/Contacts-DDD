@@ -1,1 +1,38 @@
-<p>User account, works!</p>
+<h1>Account</h1>
+<hr>
+<div *ngIf="(user$ | async) as user">
+  <form>
+    <div class="row">
+      <div class="col-2">
+        <img src="../../../assets/img/login.jpg" class="img-fluid" alt="Avatar">
+      </div>
+      <div class="col-4">
+
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" class="form-control" [(ngModel)]="user.userName" name="username" ap-autofocus />
+        </div>
+
+        <div class="form-group">
+          <label>E-Mail</label>
+          <input type="email" class="form-control" name="email" />
+        </div>
+
+      </div>
+      <div class="col-4">
+
+        <div class="form-group">
+          <label>Password</label>
+          <input disabled type="password" class="form-control" name="password" />
+        </div>
+
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <hr>
+
+    <button class="btn btn-success mr-1" (click)="edit()"><i class="fa fa-save"></i></button>
+    <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
+
+  </form>
+</div>
