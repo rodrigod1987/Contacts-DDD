@@ -8,10 +8,30 @@ import { LoginGuard } from '../shared/guard/login.guard';
 import { HomeComponent } from './home.component';
 
 const routes : Routes = [
-  { path: '', component: HomeComponent, children: [
-      { path: '', component: IndexComponent },
-      { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-      { path: 'register', component: RegisterComponent, canActivate: [LoginGuard] }
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+      {
+        path: '',
+        component: IndexComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [LoginGuard],
+        data: {
+          title: 'Login'
+        }
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        canActivate: [LoginGuard],
+        data: {
+          title: 'Register'
+        }
+      }
     ]
   }
 ]

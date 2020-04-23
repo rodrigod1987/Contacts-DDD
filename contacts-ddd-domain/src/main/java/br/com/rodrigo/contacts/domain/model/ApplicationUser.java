@@ -14,11 +14,14 @@ public class ApplicationUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(unique = true)
+	@Column(nullable = false, unique = true)
 	private String username;
+	@Column(nullable = false)
 	private String password;
 	private boolean active;
+	@Column(nullable = false)
 	private String email;
+	@Column(nullable = false)
 	private Date birthdate;
 	
 	public ApplicationUser() { }

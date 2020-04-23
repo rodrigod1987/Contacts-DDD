@@ -7,19 +7,31 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+    data: {
+      title: 'Home'
+    }
   },
   {
     path: 'contacts',
-    loadChildren: () => import('./contacts/contact.module').then(m => m.ContactModule)
+    loadChildren: () => import('./contacts/contact.module').then(m => m.ContactModule),
+    data: {
+      title: 'Contacts'
+    }
   },
   {
     path: 'account',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+    data: {
+      title: 'Account'
+    }
   },
   {
     path: 'not-found',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    data: {
+      title: 'Not Found Page'
+    }
   },
   {
     path: '**',

@@ -5,8 +5,14 @@ import { UserComponent } from './user.component';
 import { AuthGuard } from '../shared/guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: UserComponent, canActivate: [AuthGuard], children: [
-      { path: '', component: UserAccountComponent }
+  {
+    path: '',
+    component: UserComponent, canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: UserAccountComponent
+      }
     ]
   }
 ];

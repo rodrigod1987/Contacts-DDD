@@ -11,12 +11,43 @@ import { ContactComponent } from './contact.component';
 
 
 const routes: Routes = [
-  { path: '', component: ContactComponent, canActivate: [AuthGuard], children: [
-      { path: '', component: ContactListComponent },
-      { path: 'edit/:id', component: ContactDetailsComponent },
-      { path: 'new', component: ContactsAddComponent },
-      { path: 'edit/:id/phone/new', component: PhoneAddComponent },
-      { path: 'edit/:id/phone/edit/:phoneId', component: PhoneDetailsComponent }
+  {
+    path: '',
+    component: ContactComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: ContactListComponent
+      },
+      {
+        path: 'edit/:id',
+        component: ContactDetailsComponent,
+        data: {
+          title: 'Edit Contact'
+        }
+      },
+      {
+        path: 'new',
+        component: ContactsAddComponent,
+        data: {
+          title: 'New Contact'
+        }
+      },
+      {
+        path: 'edit/:id/phone/new',
+        component: PhoneAddComponent,
+        data: {
+          title: 'New Phone'
+        }
+      },
+      {
+        path: 'edit/:id/phone/edit/:phoneId',
+        component: PhoneDetailsComponent,
+        data: {
+          title: 'Edit Phone'
+        }
+      }
     ]
   }
 ];
