@@ -55,8 +55,8 @@ public class ApplicationUserService implements ApplicationUserServiceIntf {
 	}
 
 	@Override
-	public ApplicationUser findByUserName(String userName) {
-		Optional<ApplicationUser> user = repository.findByUserName(userName);
+	public ApplicationUser findByUsername(String username) {
+		Optional<ApplicationUser> user = repository.findByUsername(username);
 		
 		if (user.isPresent())
 			return user.get();

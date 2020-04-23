@@ -1,5 +1,6 @@
-export interface User {
-    userName : string,
-    createdOn: Date,
-    expiresOn: Date
+export interface UserAuth {
+    username : string,
+    password: string,
+    email: string,
+    birthdate: Date
 }

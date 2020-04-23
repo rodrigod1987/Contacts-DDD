@@ -24,13 +24,17 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		ApplicationUser user = appService.findByUserName(username);
+		ApplicationUser user = appService.findByUsername(username);
 		
 		if (user == null) {
             throw new UsernameNotFoundException(username);
         }
 		
-		return new User(user.getUserName(), user.getPassword(), Collections.emptyList());
+		return new User(user.getUsername(), user.getPassword(), Collections.emptyList());
 	}	
+	
+	public ApplicationUser findBy(String username) {
+		return appService.findByUsername(username);
+	}
 	
 }

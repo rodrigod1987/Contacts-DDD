@@ -50,7 +50,7 @@ export class MessageComponent {
       case MessageType.DANGER:
         return 'text-white bg-danger';
       case MessageType.INFO:
-        return 'text-white bg-light';
+        return 'bg-light';
     }
 
   }

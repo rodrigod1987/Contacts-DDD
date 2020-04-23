@@ -12,10 +12,13 @@ import { environment } from 'src/environments/environment';
 import { ApiAuthInterceptor } from './shared/intercept/api-auth.interceptor';
 import { ErrorInterceptor } from './shared/intercept/error.interceptor';
 import { ComponentsModule } from './shared/components/components.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { DirectivesModule } from './shared/directives/directives.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

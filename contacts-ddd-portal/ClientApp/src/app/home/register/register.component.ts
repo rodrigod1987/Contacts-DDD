@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RegisterService } from '../../shared/services/register.service';
-import { User } from '../../shared/model/user';
+import { UserAuth } from '../../shared/model/user';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -11,20 +12,27 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  @Input() userName: string;
-  @Input() password: string;
+  form: FormGroup;
 
-  constructor(private registerService: RegisterService,
+  constructor(private fb: FormBuilder,
+    private registerService: RegisterService,
     private route: Router,
     private location: Location) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      birthdate: ['', Validators.required]
+    });
   }
 
   save() {
-      this.registerService
-        .save(this.userName, this.password)
-        .subscribe(() => { this.route.navigate(['/home']) });
+    const user = this.form.getRawValue() as UserAuth;
+    this.registerService
+      .save(user)
+      .subscribe(() => { this.route.navigate(['/home', 'login']) });
   }
 
   goBack(): void {

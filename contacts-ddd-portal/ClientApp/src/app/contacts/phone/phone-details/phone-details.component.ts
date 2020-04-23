@@ -31,8 +31,6 @@ export class PhoneDetailsComponent implements OnInit {
     this.phoneService
       .edit(this.phone)
       .subscribe((phone: Phone) => {
-        console.log(phone);
-
         this.phone = phone;
         this.route.navigate(['contacts/edit', this.phone.contact.id]);
       });

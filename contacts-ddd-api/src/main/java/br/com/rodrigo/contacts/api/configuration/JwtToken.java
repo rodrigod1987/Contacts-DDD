@@ -9,6 +9,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import br.com.rodrigo.contacts.domain.model.ApplicationUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -36,7 +37,7 @@ public class JwtToken implements Serializable {
 	 * @return
 	 */
 	public String getUserNameFrom(String token) {
-		return getClaimFrom(token, t -> t.get("userName", String.class));
+		return getClaimFrom(token, t -> t.get("username", String.class));
 	}
 	
 	
@@ -71,10 +72,12 @@ public class JwtToken implements Serializable {
 	 * @param userDetails
 	 * @return
 	 */
-	public String generate(UserDetails userDetails) {
+	public String generate(ApplicationUser userDetails) {
 		Map<String, Object> claims = new HashMap<>();
 		
-		claims.put("userName", userDetails.getUsername());
+		claims.put("username", userDetails.getUsername());
+		claims.put("email", userDetails.getEmail());
+		claims.put("birthdate", userDetails.getBirthdate());
 		claims.put("createdOn", new Date(System.currentTimeMillis()).toString());
 		claims.put("expiresOn", new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY).toString());
 		

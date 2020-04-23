@@ -6,15 +6,13 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { AuthService } from '../services/auth.service';
 import { catchError } from 'rxjs/operators';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { UserAuthService } from '../services/user-auth.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserAuthService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 

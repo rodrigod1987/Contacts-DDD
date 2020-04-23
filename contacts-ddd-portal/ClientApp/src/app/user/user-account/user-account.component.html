@@ -4,26 +4,28 @@
   <form>
     <div class="row">
       <div class="col-2">
-        <img src="../../../assets/img/login.jpg" class="img-fluid" alt="Avatar">
+        <img src="../../../assets/img/login.jpg" class="img-fluid img-thumbnail" alt="Avatar" />
       </div>
       <div class="col-4">
 
         <div class="form-group">
           <label>Username</label>
-          <input type="text" class="form-control" [(ngModel)]="user.userName" name="username" ap-autofocus />
+          <input disabled type="text" class="form-control"
+            [ngModel]="user.username" name="username" />
         </div>
 
         <div class="form-group">
           <label>E-Mail</label>
-          <input type="email" class="form-control" name="email" />
+          <input disabled type="email" class="form-control"
+            [ngModel]="user.email" name="email" />
         </div>
 
       </div>
       <div class="col-4">
-
         <div class="form-group">
-          <label>Password</label>
-          <input disabled type="password" class="form-control" name="password" />
+          <label>Bithdate</label>
+          <input disabled type="text" class="form-control"
+          [ngModel]="(user.birthdate | date)" name="birthdate" />
         </div>
 
       </div>
@@ -31,8 +33,8 @@
     </div>
     <hr>
 
-    <button class="btn btn-success mr-1" (click)="edit()"><i class="fa fa-save"></i></button>
-    <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
+    <button [disabled]="form.invalid" class="btn btn-success mr-1" (click)="edit()"><i class="fa fa-save"></i></button>
+    <button class="btn btn-outline-info" [routerLink]="['']"><i class="fa fa-home"></i></button>
 
   </form>
 </div>

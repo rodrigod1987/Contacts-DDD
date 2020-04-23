@@ -1,5 +1,7 @@
 package br.com.rodrigo.contacts.domain.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,18 +15,20 @@ public class ApplicationUser {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(unique = true)
-	private String userName;
+	private String username;
 	private String password;
 	private boolean active;
+	private String email;
+	private Date birthdate;
 	
 	public ApplicationUser() { }
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -41,6 +45,22 @@ public class ApplicationUser {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public Date getBirthdate() {
+		return birthdate;
+	}
+	
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 
 	public long getId() {

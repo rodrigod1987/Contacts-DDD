@@ -10,6 +10,6 @@ public interface ApplicationUserAppServiceIntf extends BaseAppService<Applicatio
 	 * @param userName
 	 * @return
 	 */
-	ApplicationUser findByUserName(String userName);
+	ApplicationUser findByUsername(String username);
 	
 }

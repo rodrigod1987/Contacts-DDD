@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeRoutingModule } from './home.routing.module';
 import { IndexComponent } from './index/index.component';
+import { DirectivesModule } from '../shared/directives/directives.module';
+import { ComponentsModule } from '../shared/components/components.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { IndexComponent } from './index/index.component';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
+    ComponentsModule,
+    DirectivesModule,
     HomeRoutingModule
   ],
   exports: []

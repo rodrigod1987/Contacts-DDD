@@ -10,10 +10,10 @@
           placeholder="Username"
           name="username"
           ap-autofocus />
-        <small class="text-danger d-block mt-2"
-          *ngIf="form.get('userName').errors?.required">
-          *Username is required!
-        </small>
+        <ap-validation-message
+          *ngIf="form.get('userName').errors?.required"
+          message="Username is required!">
+        </ap-validation-message>
       </div>
       <div class="form-group">
         <input type="password"
@@ -21,17 +21,17 @@
           class="form-control"
           placeholder="Password"
           name="password">
-          <small class="text-danger d-block mt-2"
-            *ngIf="form.get('password').errors?.required">
-            *Password is required!
-          </small>
+          <ap-validation-message
+            *ngIf="form.get('password').errors?.required"
+            message="Password is required!">
+          </ap-validation-message>
       </div>
       <div class="form-group form-check">
           <input type="checkbox" class="form-check-input">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
       </div>
       <button [disabled]="form.invalid" class="btn btn-lg btn-primary btn-block">Login</button>
-      <a class="btn btn-lg btn-danger btn-block" [routerLink]="['/register']">Signup</a>
+      <a class="btn btn-lg btn-danger btn-block" [routerLink]="['/home', 'register']">Signup</a>
     </form>
     <div *ngIf="error" class="alert alert-danger" role="alert">
       {{error}}

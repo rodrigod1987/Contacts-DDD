@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
-import { User } from '../../model/user';
+
+import { UserAuthService } from '../../services/user-auth.service';
+import { UserAuth } from '../../model/user';
 
 @Component({
   selector: 'ap-header',
@@ -13,13 +13,13 @@ export class HeaderComponent implements OnInit {
 
   title = 'Contacts DDD';
   isCollapsed = true;
-  private user$ : Observable<User>;
-  user : User;
+  user : UserAuth;
 
-  constructor(private userService: UserService,
+  constructor(private userService: UserAuthService,
     private route: Router) {
-      this.user$ = this.userService.getUser();
-      this.user$.subscribe(user => this.user = user);
+      this.userService
+        .getUser()
+        .subscribe(user => this.user = user);
     }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-    this.route.navigate(['login']);
+    this.route.navigate(['/home','login']);
     this.isCollapsed = true;
   }
 

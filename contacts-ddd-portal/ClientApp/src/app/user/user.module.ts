@@ -7,6 +7,7 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user.routing.module';
 import { DirectivesModule } from '../shared/directives/directives.module';
+import { ComponentsModule } from '../shared/components/components.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DirectivesModule } from '../shared/directives/directives.module';
     ReactiveFormsModule,
     RouterModule,
     DirectivesModule,
+    ComponentsModule,
     UserRoutingModule
   ],
 })

@@ -4,6 +4,6 @@ import br.com.rodrigo.contacts.domain.model.ApplicationUser;
 
 public interface ApplicationUserServiceIntf extends BaseService<ApplicationUser> {
 
-	ApplicationUser findByUserName(String userName);
+	ApplicationUser findByUsername(String username);
 	
 }

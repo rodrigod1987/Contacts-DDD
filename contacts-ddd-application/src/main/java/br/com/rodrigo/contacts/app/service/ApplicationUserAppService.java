@@ -39,8 +39,8 @@ public class ApplicationUserAppService implements ApplicationUserAppServiceIntf 
 	}
 
 	@Override
-	public ApplicationUser findByUserName(String userName) {
-		return service.findByUserName(userName);
+	public ApplicationUser findByUsername(String username) {
+		return service.findByUsername(username);
 	}
 
 }

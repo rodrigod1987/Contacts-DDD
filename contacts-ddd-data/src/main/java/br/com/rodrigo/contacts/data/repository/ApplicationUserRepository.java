@@ -7,6 +7,6 @@ import br.com.rodrigo.contacts.domain.model.ApplicationUser;
 
 public interface ApplicationUserRepository extends BaseRepository<ApplicationUser> {
 	
-	Optional<ApplicationUser> findByUserName(String userName);
+	Optional<ApplicationUser> findByUsername(String username);
 
 }

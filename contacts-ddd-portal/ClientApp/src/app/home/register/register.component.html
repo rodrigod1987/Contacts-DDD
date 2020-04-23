@@ -1,18 +1,59 @@
 <div class="container">
   <h1>Register</h1>
-  <form>
+  <form [formGroup]="form">
     <div class="row">
       <div class="col-6">
         <div class="form-group">
-          <input type="text" class="form-control" [(ngModel)]="userName"
-                 name="userName" placeholder="Username" ap-autofocus />
+          <label>Username
+            <ap-validation-message
+              *ngIf="form.get('username').errors?.required"
+              message="Username is required!">
+            </ap-validation-message>
+          </label>
+          <input type="text" class="form-control" formControlName="username"
+                 name="username" ap-autofocus />
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Password" />
+          <label>Password
+            <ap-validation-message
+              *ngIf="form.get('password').errors?.required"
+              message="Password is required!"
+            >
+            </ap-validation-message>
+          </label>
+          <input type="password" class="form-control" formControlName="password"
+            name="password" />
+        </div>
+        <div class="form-group">
+          <label>E-Mail
+            <ap-validation-message
+              *ngIf="form.get('email').errors?.required"
+              message="E-Mail is required!"
+            >
+            </ap-validation-message>
+            <ap-validation-message
+              *ngIf="form.get('email').errors?.email"
+              message="E-Mail must be a valid mail!"
+            >
+            </ap-validation-message>
+          </label>
+          <input type="email" class="form-control" formControlName="email"
+            name="email" />
+        </div>
+        <div class="form-group">
+          <label>Birthdate
+            <ap-validation-message
+              *ngIf="form.get('birthdate').errors?.required"
+              message="Birthdate is required!"
+            >
+            </ap-validation-message>
+          </label>
+          <input type="date" class="form-control" formControlName="birthdate"
+            name="birthdate" />
         </div>
       </div>
     </div>
-    <button class="btn btn-success mr-1" (click)="save()"><i class="fa fa-save"></i></button>
+    <button [disabled]="form.invalid" class="btn btn-success mr-1" (click)="save()"><i class="fa fa-save"></i></button>
     <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
   </form>
 </div>
