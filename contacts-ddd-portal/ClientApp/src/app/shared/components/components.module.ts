@@ -6,13 +6,17 @@ import { RouterModule } from '@angular/router';
 import { MessageComponent } from './message/message.component';
 import { FooterComponent } from './footer/footer.component';
 import { ValidationMessageComponent } from './validation-message/validation-message.component';
+import { LoadingComponent } from './loading/loading.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingIntercept } from './loading/loading.intercept';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     MessageComponent,
     FooterComponent,
-    ValidationMessageComponent
+    ValidationMessageComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,15 @@ import { ValidationMessageComponent } from './validation-message/validation-mess
     HeaderComponent,
     MessageComponent,
     FooterComponent,
-    ValidationMessageComponent
+    ValidationMessageComponent,
+    LoadingComponent
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingIntercept,
+      multi: true
+    }
   ]
 })
 export class ComponentsModule {}
