@@ -9,6 +9,7 @@ import { ValidationMessageComponent } from './validation-message/validation-mess
 import { LoadingComponent } from './loading/loading.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingIntercept } from './loading/loading.intercept';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LoadingIntercept } from './loading/loading.intercept';
     MessageComponent,
     FooterComponent,
     ValidationMessageComponent,
-    LoadingComponent
+    LoadingComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { LoadingIntercept } from './loading/loading.intercept';
     MessageComponent,
     FooterComponent,
     ValidationMessageComponent,
-    LoadingComponent
+    LoadingComponent,
+    MenuComponent
   ],
   providers: [
     {
