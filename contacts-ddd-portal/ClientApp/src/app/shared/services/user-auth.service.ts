@@ -22,6 +22,11 @@ export class UserAuthService {
     return this.userSubject.asObservable();
   }
 
+  getUsername() {
+    const user = this.decode();
+    return user.username;
+  }
+
   logout() : void {
     this.tokenService.removeToken();
     this.userSubject.next(null);
@@ -31,9 +36,15 @@ export class UserAuthService {
     return this.tokenService.hasToken();
   }
 
-  private decodeAndNotify() {
+  private decode() {
     const token = this.tokenService.getToken();
     const user = jwt_decode(token) as UserAuth;
+
+    return user;
+  }
+
+  private decodeAndNotify() {
+    const user = this.decode();
     this.userSubject.next(user);
   }
 

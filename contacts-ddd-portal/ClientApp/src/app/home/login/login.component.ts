@@ -4,6 +4,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -39,7 +41,10 @@ export class LoginComponent implements OnInit {
         () => {
           this.router.navigate([this.returnUrl]);
         },
-        error => { this.error = error; }
+        err => {
+          this.loadingService.stop();
+          this.error = err.error ;
+        }
       );
 
   }

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { LoadingService } from './loading.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'ap-loading',
@@ -18,7 +19,6 @@ export class LoadingComponent implements OnInit {
   ngOnInit(): void {
     this.loading$ = this.loadingService
       .getLoading()
-      .pipe(tap((res) => console.log(res)))
       .pipe(map(result => result.valueOf()));
   }
 

@@ -19,13 +19,14 @@ export class ErrorInterceptor implements HttpInterceptor {
       return next.handle(request)
         .pipe(catchError(err => {
 
+          let error = err.error || err.error?.message ;
+
           if (err.status === 401) {
               // auto logout if 401 response returned from api
               this.userService.logout();
           }
 
-          const error = err.error.message || err.error || err.statusText;
-          return throwError(error);
+          return throwError(err);
         }));
     }
 }

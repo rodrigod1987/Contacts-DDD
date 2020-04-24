@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 
@@ -13,7 +12,8 @@ import { ApiAuthInterceptor } from './shared/intercept/api-auth.interceptor';
 import { ErrorInterceptor } from './shared/intercept/error.interceptor';
 import { ComponentsModule } from './shared/components/components.module';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { DirectivesModule } from './shared/directives/directives.module';
+import { GlobalErrorHanler } from './shared/handlers/global-error.handler';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { DirectivesModule } from './shared/directives/directives.module';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+    RouterModule,
     ComponentsModule,
     HttpClientModule,
     AppRoutingModule
@@ -31,7 +31,8 @@ import { DirectivesModule } from './shared/directives/directives.module';
     { provide: 'BASE_API_URL', useValue: environment.apiUrl },
     { provide: HTTP_INTERCEPTORS, useClass: ApiAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: ErrorHandler, useClass: GlobalErrorHanler }
   ],
   bootstrap: [AppComponent]
 })
