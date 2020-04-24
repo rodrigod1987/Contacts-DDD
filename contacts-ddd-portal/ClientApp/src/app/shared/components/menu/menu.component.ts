@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
+  today: Date;
   isShown = false;
   user : UserAuth;
 
-  constructor(private userService: UserAuthService,
-    private router: Router) {}
+  constructor(private userService: UserAuthService) {}
 
   ngOnInit(): void {
+    this.today = new Date();
     this.userService
         .getUser()
         .subscribe(user => this.user = user);

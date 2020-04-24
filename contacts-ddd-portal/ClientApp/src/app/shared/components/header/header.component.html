@@ -16,11 +16,14 @@
       </form>
     </div>
     <ap-menu #menu>
-      <ul class="navbar-nav">
-        <li class="nav-item">
+      <ul class="list-unstyled">
+        <li>
           <strong>
-            <a class="nav-link" [routerLink]="['contacts']" (click)="menu.toggle()">Contacts</a>
+            <a class="text-white">Menu</a>
           </strong>
+        </li>
+        <li class="nav-item">
+          <a class="btn text-white" [routerLink]="['contacts']" (click)="menu.toggle()">Contacts</a>
         </li>
       </ul>
     </ap-menu>

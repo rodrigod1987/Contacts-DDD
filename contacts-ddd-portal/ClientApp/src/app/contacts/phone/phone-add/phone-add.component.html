@@ -1,31 +1,34 @@
-<h1>Phone</h1>
+<div class="container">
 
-<form [formGroup]="form">
-  <div class="row">
-    <div class="col-6">
-      <div class="form-group">
-        <label>Number
-          <ap-validation-message
-            *ngIf="form.get('number').errors?.required"
-            message="Number of phone is required!"
-          >
-          </ap-validation-message>
-        </label>
-        <input type="text" class="form-control" formControlName="number" name="number" ap-autofocus>
-      </div>
+  <h1>Phone</h1>
 
-      <div class="form-group">
-        <label>Type</label>
-        <select class="form-control" formControlName="type" name="type">
-          <option *ngFor="let item of keys()" [ngValue]="item">{{item}}</option>
-        </select>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Number
+            <ap-validation-message
+              *ngIf="form.get('number').errors?.required"
+              message="Number of phone is required!"
+            >
+            </ap-validation-message>
+          </label>
+          <input type="text" class="form-control" formControlName="number" name="number" ap-autofocus>
+        </div>
+
+        <div class="form-group">
+          <label>Type</label>
+          <select class="form-control" formControlName="type" name="type">
+            <option *ngFor="let item of keys()" [ngValue]="item">{{item}}</option>
+          </select>
+        </div>
       </div>
     </div>
-  </div>
 
-  <hr>
+    <hr>
 
-  <button class="btn btn-success mr-1" (click)="save()"><i class="fa fa-save"></i></button>
-  <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
+    <button class="btn btn-success mr-1" (click)="save()"><i class="fa fa-save"></i></button>
+    <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
 
-</form>
+  </form>
+</div>

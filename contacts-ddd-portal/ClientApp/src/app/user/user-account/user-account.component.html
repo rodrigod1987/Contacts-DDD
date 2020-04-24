@@ -1,40 +1,43 @@
-<h1>Account</h1>
-<hr>
-<div *ngIf="(user$ | async) as user">
-  <form>
-    <div class="row">
-      <div class="col-2">
-        <img src="../../../assets/img/login.jpg" class="img-fluid img-thumbnail" alt="Avatar" />
-      </div>
-      <div class="col-4">
+<div class="container">
 
-        <div class="form-group">
-          <label>Username</label>
-          <input disabled type="text" class="form-control"
-            [ngModel]="user.username" name="username" />
+  <h1>Account</h1>
+  <hr>
+  <div *ngIf="(user$ | async) as user">
+    <form>
+      <div class="row">
+        <div class="col-2">
+          <img src="../../../assets/img/login.jpg" class="img-fluid img-thumbnail" alt="Avatar" />
         </div>
+        <div class="col-4">
 
-        <div class="form-group">
-          <label>E-Mail</label>
-          <input disabled type="email" class="form-control"
-            [ngModel]="user.email" name="email" />
+          <div class="form-group">
+            <label>Username</label>
+            <input disabled type="text" class="form-control"
+              [ngModel]="user.username" name="username" />
+          </div>
+
+          <div class="form-group">
+            <label>E-Mail</label>
+            <input disabled type="email" class="form-control"
+              [ngModel]="user.email" name="email" />
+          </div>
+
         </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Bithdate</label>
+            <input disabled type="text" class="form-control"
+            [ngModel]="(user.birthdate | date)" name="birthdate" />
+          </div>
 
-      </div>
-      <div class="col-4">
-        <div class="form-group">
-          <label>Bithdate</label>
-          <input disabled type="text" class="form-control"
-          [ngModel]="(user.birthdate | date)" name="birthdate" />
         </div>
-
+        <div class="col-2"></div>
       </div>
-      <div class="col-2"></div>
-    </div>
-    <hr>
+      <hr>
 
-    <button [disabled]="form.invalid" class="btn btn-success mr-1" (click)="edit()"><i class="fa fa-save"></i></button>
-    <button class="btn btn-outline-info" [routerLink]="['']"><i class="fa fa-home"></i></button>
+      <button [disabled]="form.invalid" class="btn btn-success mr-1" (click)="edit()"><i class="fa fa-save"></i></button>
+      <button class="btn btn-outline-info" [routerLink]="['']"><i class="fa fa-home"></i></button>
 
-  </form>
+    </form>
+  </div>
 </div>

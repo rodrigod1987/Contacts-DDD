@@ -1,25 +1,28 @@
-<h1>Phone</h1>
+<div class="container">
 
-<form *ngIf="phone">
-  <div class="row">
-    <div class="col-6">
-      <div class="form-group">
-        <label>Number:</label>
-        <input type="text" name="number" [(ngModel)]="phone.number" ap-autofocus class="form-control">
-      </div>
+  <h1>Phone</h1>
 
-      <div class="form-group">
-        <label>Type:</label>
-        <select class="form-control" [(ngModel)]="phone.type" name="type">
-          <option *ngFor="let item of keys()" [ngValue]="item">{{item}}</option>
-        </select>
+  <form *ngIf="phone">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Number:</label>
+          <input type="text" name="number" [(ngModel)]="phone.number" ap-autofocus class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Type:</label>
+          <select class="form-control" [(ngModel)]="phone.type" name="type">
+            <option *ngFor="let item of keys()" [ngValue]="item">{{item}}</option>
+          </select>
+        </div>
       </div>
     </div>
-  </div>
 
-  <hr>
+    <hr>
 
-  <button class="btn btn-success mr-1" (click)="edit()"><i class="fa fa-save"></i></button>
-  <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
+    <button class="btn btn-success mr-1" (click)="edit()"><i class="fa fa-save"></i></button>
+    <button class="btn btn-outline-info" (click)="goBack()"><i class="fa fa-table"></i></button>
 
-</form>
+  </form>
+</div>

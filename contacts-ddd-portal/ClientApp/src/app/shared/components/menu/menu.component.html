@@ -1,6 +1,11 @@
 <div [ngClass]="{ 'active-menu': isShown }">
   <div class="menu-bar">
       <ng-content></ng-content>
+      <footer class="footer">
+        <div class="text-white">
+          <p>&copy; RD Informática {{today | date:'mediumDate'}}</p>
+        </div>
+      </footer>
     </div>
     <div class="overlay" (click)="toggle()"></div>
 </div>
