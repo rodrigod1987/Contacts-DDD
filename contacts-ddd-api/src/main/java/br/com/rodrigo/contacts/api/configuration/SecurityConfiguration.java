@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -22,7 +23,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import br.com.rodrigo.contacts.api.security.AuthenticationFilter;
+import br.com.rodrigo.contacts.api.filter.AuthenticationFilter;
 import br.com.rodrigo.contacts.api.services.ApplicationUserDetailsService;
 
 @Configuration
@@ -69,6 +70,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	this.authenticationEntryPoint = authenticationEntryPoint;
         this.userDetailsService = userDetailsService;
         this.authenticationFilter = authenticationFilter;
+    }
+    
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/v2/api-docs",
+                                   "/configuration/ui",
+                                   "/swagger-resources/**",
+                                   "/configuration/security",
+                                   "/swagger-ui.html",
+                                   "/webjars/**");
     }
 
 	@Override
