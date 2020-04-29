@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.api.configuration;
+package br.com.rodrigo.contacts.api.security;
 
 import java.io.Serializable;
 import java.util.Date;

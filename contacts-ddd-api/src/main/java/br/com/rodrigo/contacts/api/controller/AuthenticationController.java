@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.rodrigo.contacts.api.configuration.JwtToken;
+import br.com.rodrigo.contacts.api.security.JwtToken;
 import br.com.rodrigo.contacts.api.services.ApplicationUserDetailsService;
 import br.com.rodrigo.contacts.domain.model.ApplicationUser;
 import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
