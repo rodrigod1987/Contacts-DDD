@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
-import { UserAuth } from '../model/user';
-import { MessageService } from './message.service';
+import { UserAuth } from '../../shared/model/user';
+import { MessageService } from '../../shared/components/message/message.service';
 
 @Injectable({
   providedIn: 'root'

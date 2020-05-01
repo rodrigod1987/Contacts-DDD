@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Phone } from '../model/phone';
+import { Phone } from '../../shared/model/phone';
 import { Observable } from 'rxjs';
-import { MessageService } from './message.service';
+import { MessageService } from '../../shared/components/message/message.service';
 import { tap } from 'rxjs/operators';
-import { PhoneType } from '../enums/phone-type';
+import { PhoneType } from '../../shared/enums/phone-type';
 
 @Injectable({
   providedIn: 'root'

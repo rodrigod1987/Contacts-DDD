@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import { UserAuthService } from 'src/app/shared/services/user-auth.service';
+import { UserAuthService } from 'src/app/core/auth/user-auth.service';
 import { UserAuth } from 'src/app/shared/model/user';
 
 @Component({

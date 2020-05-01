@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Contact } from '../model/contact';
+import { Contact } from '../shared/model/contact';
 import { Observable } from 'rxjs';
-import { MessageService } from './message.service';
+import { MessageService } from '../shared/components/message/message.service';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { Page } from '../model/page';
+import { Page } from '../shared/model/page';
 
 @Injectable({
   providedIn: 'root'

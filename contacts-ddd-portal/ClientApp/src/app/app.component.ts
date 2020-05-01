@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from './core/auth/auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, switchMap } from 'rxjs/operators';

@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { Contact } from '../../shared/model/contact';
-import { ContactService } from '../../shared/services/contact.service';
-import { PagerService } from '../../shared/services/pager.service';
+import { ContactService } from '../contact.service';
+import { PagerService } from '../pager.service';
 import { Page } from '../../shared/model/page';
 import { Pager } from '../../shared/model/pager';
 import { Subject } from 'rxjs';

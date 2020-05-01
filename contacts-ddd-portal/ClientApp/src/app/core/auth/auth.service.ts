@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
 import { UserAuthService } from './user-auth.service';
-import { UserAuth } from '../model/user';
+import { UserAuth } from '../../shared/model/user';
 
 @Injectable({
   providedIn: 'root'
