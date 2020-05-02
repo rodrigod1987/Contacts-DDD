@@ -12,7 +12,7 @@ import { ApiAuthInterceptor } from './core/intercept/api-auth.interceptor';
 import { ErrorInterceptor } from './core/intercept/error.interceptor';
 import { ComponentsModule } from './shared/components/components.module';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { GlobalErrorHanler } from './shared/handlers/global-error.handler';
+import { GlobalErrorHanler } from './core/handlers/global-error.handler';
 import { RouterModule } from '@angular/router';
 import { NotFoundModule } from './not-found/not-found.module';
 
@@ -25,7 +25,6 @@ import { NotFoundModule } from './not-found/not-found.module';
     RouterModule,
     ComponentsModule,
     NotFoundModule,
-    HttpClientModule,
     AppRoutingModule
   ],
   providers: [

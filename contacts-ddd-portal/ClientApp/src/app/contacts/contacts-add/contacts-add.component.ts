@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Contact } from 'src/app/shared/model/contact';
 import { Router } from '@angular/router';
-import { ContactService } from 'src/app/contacts/contact.service';
+import { ContactService } from 'src/app/contacts/services/contact.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

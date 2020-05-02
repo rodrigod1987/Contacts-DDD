@@ -1,9 +1,9 @@
 import { ErrorHandler, Injector, Injectable, NgZone } from '@angular/core';
 import * as StackTrace from 'stacktrace-js';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { UserAuthService } from '../../core/auth/user-auth.service';
-import { LoadingService } from '../components/loading/loading.service';
-import { MessageService } from '../components/message/message.service';
+import { UserAuthService } from '../auth/user-auth.service';
+import { LoadingService } from '../../shared/components/loading/loading.service';
+import { MessageService } from '../../shared/components/message/message.service';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })

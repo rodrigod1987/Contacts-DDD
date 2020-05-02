@@ -6,9 +6,7 @@ import { MessageService } from '../../shared/components/message/message.service'
 import { tap } from 'rxjs/operators';
 import { PhoneType } from '../../shared/enums/phone-type';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class PhoneService {
 
   private phonesUrl: string = `api/v1/phones`;

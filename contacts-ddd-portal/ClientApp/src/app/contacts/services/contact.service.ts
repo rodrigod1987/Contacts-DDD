@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Contact } from '../shared/model/contact';
-import { Observable } from 'rxjs';
-import { MessageService } from '../shared/components/message/message.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Page } from '../shared/model/page';
 
-@Injectable({
-  providedIn: 'root'
-})
+import { Contact } from '../../shared/model/contact';
+import { MessageService } from '../../shared/components/message/message.service';
+import { Page } from '../../shared/model/page';
+
+@Injectable({ providedIn: 'root' })
 export class ContactService {
 
   private contactsUrl: string = `api/v1/contacts`;
