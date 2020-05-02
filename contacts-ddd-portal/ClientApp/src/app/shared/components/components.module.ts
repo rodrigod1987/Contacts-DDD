@@ -7,7 +7,7 @@ import { MessageComponent } from './message/message.component';
 import { FooterComponent } from './footer/footer.component';
 import { ValidationMessageComponent } from './validation-message/validation-message.component';
 import { LoadingComponent } from './loading/loading.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingIntercept } from './loading/loading.intercept';
 import { MenuComponent } from './menu/menu.component';
 
@@ -23,12 +23,13 @@ import { MenuComponent } from './menu/menu.component';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   exports: [
     HeaderComponent,
-    MessageComponent,
     FooterComponent,
+    MessageComponent,
     ValidationMessageComponent,
     LoadingComponent,
     MenuComponent

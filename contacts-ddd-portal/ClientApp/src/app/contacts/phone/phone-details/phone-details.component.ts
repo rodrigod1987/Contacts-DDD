@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PhoneType } from 'src/app/shared/enums/phone-type';
 import { Phone } from 'src/app/shared/model/phone';
-import { PhoneService } from 'src/app/shared/services/phone.service';
+import { PhoneService } from 'src/app/contacts/phone/phone.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

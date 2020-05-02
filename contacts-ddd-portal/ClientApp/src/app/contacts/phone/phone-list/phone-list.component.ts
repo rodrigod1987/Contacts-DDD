@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Phone } from 'src/app/shared/model/phone';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PhoneService } from 'src/app/shared/services/phone.service';
+import { PhoneService } from 'src/app/contacts/phone/phone.service';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

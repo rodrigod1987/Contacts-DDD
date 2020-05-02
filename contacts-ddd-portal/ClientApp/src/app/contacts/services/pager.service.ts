@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Pager } from '../model/pager';
+import { Pager } from '../../shared/model/pager';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class PagerService {
 
   getPager(totalPages: number, totalItems: number, page: number = 0, size: number = 10) : Pager {

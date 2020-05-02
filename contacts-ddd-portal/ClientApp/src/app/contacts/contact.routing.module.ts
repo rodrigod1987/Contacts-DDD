@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ContactListComponent } from './contact-list/contact-list.component';
-import { AuthGuard } from '../shared/guard/auth.guard';
+import { AuthGuard } from '../core/guard/auth.guard';
 import { ContactDetailsComponent } from './contacts-details/contacts-details.component';
 import { ContactsAddComponent } from './contacts-add/contacts-add.component';
 import { PhoneAddComponent } from './phone/phone-add/phone-add.component';

@@ -5,26 +5,26 @@ import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApiInterceptor } from './shared/intercept/api.interceptor';
+import { ApiInterceptor } from './core/intercept/api.interceptor';
 
 import { environment } from 'src/environments/environment';
-import { ApiAuthInterceptor } from './shared/intercept/api-auth.interceptor';
-import { ErrorInterceptor } from './shared/intercept/error.interceptor';
+import { ApiAuthInterceptor } from './core/intercept/api-auth.interceptor';
+import { ErrorInterceptor } from './core/intercept/error.interceptor';
 import { ComponentsModule } from './shared/components/components.module';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { GlobalErrorHanler } from './shared/handlers/global-error.handler';
+import { GlobalErrorHanler } from './core/handlers/global-error.handler';
 import { RouterModule } from '@angular/router';
+import { NotFoundModule } from './not-found/not-found.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NotFoundComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     ComponentsModule,
-    HttpClientModule,
+    NotFoundModule,
     AppRoutingModule
   ],
   providers: [

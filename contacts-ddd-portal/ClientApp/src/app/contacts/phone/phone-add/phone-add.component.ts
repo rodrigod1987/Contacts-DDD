@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Phone } from 'src/app/shared/model/phone';
-import { PhoneService } from 'src/app/shared/services/phone.service';
+import { PhoneService } from 'src/app/contacts/phone/phone.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PhoneType } from 'src/app/shared/enums/phone-type';
 import { Contact } from 'src/app/shared/model/contact';
-import { ContactService } from 'src/app/shared/services/contact.service';
+import { ContactService } from 'src/app/contacts/services/contact.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({

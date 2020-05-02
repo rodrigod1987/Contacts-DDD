@@ -8,6 +8,7 @@ import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user.routing.module';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { ComponentsModule } from '../shared/components/components.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ComponentsModule } from '../shared/components/components.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    HttpClientModule,
     DirectivesModule,
     ComponentsModule,
     UserRoutingModule
