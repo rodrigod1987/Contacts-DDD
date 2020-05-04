@@ -4,17 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import br.com.rodrigo.contacts.domain.app.service.ApplicationUserAppServiceIntf;
+import br.com.rodrigo.contacts.domain.application.IApplicationUserAppService;
 import br.com.rodrigo.contacts.domain.model.ApplicationUser;
-import br.com.rodrigo.contacts.domain.service.ApplicationUserServiceIntf;
+import br.com.rodrigo.contacts.domain.model.VerificationToken;
+import br.com.rodrigo.contacts.domain.service.IApplicationUserService;
+import br.com.rodrigo.contacts.domain.service.IVerificationTokenService;
 
 @Service
-public class ApplicationUserAppService implements ApplicationUserAppServiceIntf {
+public class ApplicationUserAppService implements IApplicationUserAppService {
 
-	private ApplicationUserServiceIntf service;
+	private IApplicationUserService service;
+	private IVerificationTokenService registrationTokenService;
 	
 	@Autowired
-	public ApplicationUserAppService(ApplicationUserServiceIntf service) {
+	public ApplicationUserAppService(IApplicationUserService service) {
 		this.service = service;
 	}
 
@@ -41,6 +44,23 @@ public class ApplicationUserAppService implements ApplicationUserAppServiceIntf 
 	@Override
 	public ApplicationUser findByUsername(String username) {
 		return service.findByUsername(username);
+	}
+
+	@Override
+	public void createVerificationToken(ApplicationUser user, String token) {
+		VerificationToken verificationToken = new VerificationToken(user, token);
+		this.registrationTokenService.save(verificationToken);
+	}
+
+	@Override
+	public VerificationToken getVerificationToken(String token) {
+		return this.registrationTokenService.findByToken(token);
+	}
+
+	@Override
+	public void saveRegisteredUser(ApplicationUser user) {
+		user.setEnabled(true);
+		this.service.save(user);
 	}
 
 }

@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.service;
+package br.com.rodrigo.contacts.data.service;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.data.repository.PhoneRepository;
 import br.com.rodrigo.contacts.domain.model.Phone;
-import br.com.rodrigo.contacts.domain.service.BaseService;
+import br.com.rodrigo.contacts.domain.service.IPhoneService;
 
 @Service
-public class PhoneService implements BaseService<Phone> {
+public class PhoneService implements IPhoneService {
 
 	private PhoneRepository repository;
 	
@@ -50,6 +50,7 @@ public class PhoneService implements BaseService<Phone> {
 		return null;
 	}
 	
+	@Override
 	public Collection<Phone> findAllBy(Long contactId) {
 		return repository.findByContactId(contactId);
 	}

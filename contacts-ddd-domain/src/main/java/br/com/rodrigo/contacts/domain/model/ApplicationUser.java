@@ -23,8 +23,12 @@ public class ApplicationUser {
 	private String email;
 	@Column(nullable = false)
 	private Date birthdate;
+	private boolean enabled;
 	
-	public ApplicationUser() { }
+	public ApplicationUser() {
+		super();
+		this.enabled = false;
+	}
 
 	public String getUsername() {
 		return username;
@@ -68,6 +72,14 @@ public class ApplicationUser {
 
 	public long getId() {
 		return id;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }

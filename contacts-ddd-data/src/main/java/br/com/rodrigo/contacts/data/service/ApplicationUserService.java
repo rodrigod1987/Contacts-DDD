@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.service;
+package br.com.rodrigo.contacts.data.service;
 
 import java.util.Optional;
 
@@ -8,13 +8,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.rodrigo.contacts.data.exception.ApplicationUserDeleteException;
 import br.com.rodrigo.contacts.data.repository.ApplicationUserRepository;
 import br.com.rodrigo.contacts.domain.model.ApplicationUser;
-import br.com.rodrigo.contacts.domain.service.ApplicationUserServiceIntf;
-import br.com.rodrigo.contacts.service.exception.ApplicationUserDeleteException;
+import br.com.rodrigo.contacts.domain.service.IApplicationUserService;
 
 @Service
-public class ApplicationUserService implements ApplicationUserServiceIntf {
+public class ApplicationUserService implements IApplicationUserService {
 	
 	private ApplicationUserRepository repository;
 	

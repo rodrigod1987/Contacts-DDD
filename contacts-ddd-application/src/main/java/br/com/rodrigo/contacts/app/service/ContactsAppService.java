@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import br.com.rodrigo.contacts.domain.app.service.BaseAppService;
+import br.com.rodrigo.contacts.data.service.ContactService;
+import br.com.rodrigo.contacts.domain.application.IContactsAppService;
 import br.com.rodrigo.contacts.domain.model.Contact;
 import br.com.rodrigo.contacts.domain.model.Phone;
-import br.com.rodrigo.contacts.service.ContactService;
 
 @Service
-public class ContactsAppService implements BaseAppService<Contact> {
+public class ContactsAppService implements IContactsAppService {
 
 	private final ContactService service;
 

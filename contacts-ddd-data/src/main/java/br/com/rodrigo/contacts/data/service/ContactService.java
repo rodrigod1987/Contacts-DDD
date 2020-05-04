@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.service;
+package br.com.rodrigo.contacts.data.service;
 
 import java.util.Optional;
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.data.repository.ContactRepository;
 import br.com.rodrigo.contacts.domain.model.Contact;
-import br.com.rodrigo.contacts.domain.service.BaseService;
+import br.com.rodrigo.contacts.domain.service.IContactService;
 
 @Service
-public class ContactService implements BaseService<Contact> {
+public class ContactService implements IContactService {
 
 	private ContactRepository repository;
 

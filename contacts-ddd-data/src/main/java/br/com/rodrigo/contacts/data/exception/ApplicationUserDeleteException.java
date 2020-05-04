@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.service.exception;
+package br.com.rodrigo.contacts.data.exception;
 
 public class ApplicationUserDeleteException extends RuntimeException {
 
