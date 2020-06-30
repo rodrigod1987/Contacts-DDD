@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ApplicationUser {
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class ApplicationUser {
 	private Date birthdate;
 	private boolean enabled;
 	
-	public ApplicationUser() {
+	public User() {
 		super();
 		this.enabled = false;
 	}

@@ -45,6 +45,10 @@ export class GlobalErrorHanler implements ErrorHandler {
     }
     else {
 
+      if (error.error) {
+        error = error.error;
+      }
+
       messageService.danger(`An error ocurred: ${error.message}`);
       ngZone.run(() => router.navigate(['/not-found']));
     }

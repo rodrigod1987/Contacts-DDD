@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import br.com.rodrigo.contacts.domain.application.IApplicationUserAppService;
-import br.com.rodrigo.contacts.domain.model.ApplicationUser;
+import br.com.rodrigo.contacts.domain.model.User;
 
 @Component
 public class RegistrationListener implements
@@ -27,7 +27,7 @@ public class RegistrationListener implements
     }
  
     private void confirmRegistration(OnRegistrationCompleteEvent event) {
-        ApplicationUser user = event.getUser();
+        User user = event.getUser();
         String token = UUID.randomUUID().toString();
         service.createVerificationToken(user, token);
          

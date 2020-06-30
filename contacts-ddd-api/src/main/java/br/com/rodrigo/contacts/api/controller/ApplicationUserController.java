@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.Errors;
@@ -19,7 +20,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import br.com.rodrigo.contacts.api.listeners.OnRegistrationCompleteEvent;
 import br.com.rodrigo.contacts.domain.application.IApplicationUserAppService;
-import br.com.rodrigo.contacts.domain.model.ApplicationUser;
+import br.com.rodrigo.contacts.domain.model.User;
 import br.com.rodrigo.contacts.domain.model.VerificationToken;
 
 @RestController
@@ -38,14 +39,14 @@ public class ApplicationUserController {
 	}
 	
 	@PostMapping("/signup")
-	public void signUp(@RequestBody ApplicationUser user, 
+	public void signUp(@RequestBody User user, 
 			  HttpServletRequest request, 
 			  Errors errors) {
 		
 		user.setPassword(encoder.encode(user.getPassword()));
-		ApplicationUser registered = appService.save(user);
+		User registered = appService.save(user);
 		
-		String appUrl = request.getContextPath();
+		String appUrl = request.getContextPath().concat("/api/v1/users");
 		
         eventPublisher.publishEvent(new OnRegistrationCompleteEvent(registered, 
           request.getLocale(), 
@@ -53,8 +54,8 @@ public class ApplicationUserController {
 		
 	}
 	
-	@GetMapping("/regitrationConfirm")
-	public ResponseEntity<String> confirmRegistration(WebRequest request, 
+	@GetMapping("/signupConfirmation")
+	public ResponseEntity<String> signupConfirmation(WebRequest request, 
 			  @RequestParam("token") String token) {
 	     
 	    VerificationToken verificationToken = appService.getVerificationToken(token);
@@ -65,7 +66,7 @@ public class ApplicationUserController {
 	    			.body("The given token was not found in application.");
 	    }
 	     
-	    ApplicationUser user = verificationToken.getUser();
+	    User user = verificationToken.getUser();
 	    
 	    Calendar cal = Calendar.getInstance();
 	    if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
@@ -75,11 +76,10 @@ public class ApplicationUserController {
 	    			.body("The given token has been expired.");
 	    } 
 	     
-	    user.setEnabled(true); 
 	    appService.saveRegisteredUser(user);
 	    
 	    return ResponseEntity
-	    		.ok()
+	    		.status(HttpStatus.SEE_OTHER)
 	    		.body("The user was activated successfully!");
 	}
 	

@@ -8,9 +8,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.rodrigo.contacts.data.exception.ApplicationUserDeleteException;
+import br.com.rodrigo.contacts.data.exception.UserDeleteException;
+import br.com.rodrigo.contacts.data.exception.UserHasBeenRegisteredException;
+import br.com.rodrigo.contacts.data.exception.UserNotEnabledException;
+import br.com.rodrigo.contacts.data.exception.UserNotFoundException;
 import br.com.rodrigo.contacts.data.repository.ApplicationUserRepository;
-import br.com.rodrigo.contacts.domain.model.ApplicationUser;
+import br.com.rodrigo.contacts.domain.model.User;
 import br.com.rodrigo.contacts.domain.service.IApplicationUserService;
 
 @Service
@@ -24,44 +27,55 @@ public class ApplicationUserService implements IApplicationUserService {
 	}
 
 	@Override
-	public Page<ApplicationUser> findAll(Integer page, Integer size) {
+	public Page<User> findAll(Integer page, Integer size) {
 		Pageable paging = PageRequest.of(page, size);
 		return repository.findAll(paging);
 	}
 
 	@Override
-	public ApplicationUser save(ApplicationUser entity) {
-		return repository.save(entity);
+	public User save(User entity) {
+		try {
+			return repository.save(entity);
+		} catch (Exception e) {
+			throw new UserHasBeenRegisteredException(entity.getUsername(), e);
+		}
 	}
 
 	@Override
 	public void delete(Long id) {
-		Optional<ApplicationUser> user = repository.findById(id);
+		Optional<User> user = repository.findById(id);
 		
 		if (user.isPresent())
 			repository.delete(user.get());
 		
-		throw new ApplicationUserDeleteException("O usuário não foi excluído pois não foi localizado.");
+		throw new UserDeleteException();
 	}
 
 	@Override
-	public ApplicationUser findBy(Long id) {
-		Optional<ApplicationUser> user = repository.findById(id);
+	public User findBy(Long id) {
+		Optional<User> user = repository.findById(id);
 		
-		if (user.isPresent())
+		if (user.isPresent()) {
 			return user.get();
+		}
 		
-		return null;
+		throw new UserNotFoundException(id);
 	}
 
 	@Override
-	public ApplicationUser findByUsername(String username) {
-		Optional<ApplicationUser> user = repository.findByUsername(username);
+	public User findByUsername(String username) {
+		Optional<User> user = repository.findByUsername(username);
+		
+		if (!user.isPresent()) {
+			throw new UserNotFoundException(username);
+        }
+		
+		user = user.filter(u -> u.isEnabled());
 		
 		if (user.isPresent())
 			return user.get();
-		
-		return null;
+
+		throw new UserNotEnabledException(username);
 	}
 
 }

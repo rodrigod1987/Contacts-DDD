@@ -1,9 +1,9 @@
 package br.com.rodrigo.contacts.domain.application;
 
-import br.com.rodrigo.contacts.domain.model.ApplicationUser;
+import br.com.rodrigo.contacts.domain.model.User;
 import br.com.rodrigo.contacts.domain.model.VerificationToken;
 
-public interface IApplicationUserAppService extends BaseAppService<ApplicationUser> {
+public interface IApplicationUserAppService extends BaseAppService<User> {
 
 	
 	/**
@@ -12,7 +12,7 @@ public interface IApplicationUserAppService extends BaseAppService<ApplicationUs
 	 * @param userName
 	 * @return
 	 */
-	ApplicationUser findByUsername(String username);
+	User findByUsername(String username);
 
 	/**
 	 * Method responsible to create a token to finish registration user
@@ -21,7 +21,7 @@ public interface IApplicationUserAppService extends BaseAppService<ApplicationUs
 	 * @param user
 	 * @param token
 	 */
-	void createVerificationToken(ApplicationUser user, String token);
+	void createVerificationToken(User user, String token);
 
 	/**
 	 * Get the verificationToken based on given token
@@ -36,6 +36,6 @@ public interface IApplicationUserAppService extends BaseAppService<ApplicationUs
 	 * 
 	 * @param user
 	 */
-	void saveRegisteredUser(ApplicationUser user);
+	void saveRegisteredUser(User user);
 	
 }

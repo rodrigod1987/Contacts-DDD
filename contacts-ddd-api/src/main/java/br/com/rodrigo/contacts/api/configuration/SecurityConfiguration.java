@@ -90,6 +90,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     		.authorizeRequests()
     			.antMatchers(HttpMethod.POST, "/api/v1/users/signup").permitAll()
     			.antMatchers(HttpMethod.POST, "/api/v1/auth/authenticate").permitAll()
+    			.antMatchers(HttpMethod.GET, "/api/v1/users/signupConfirmation").permitAll()
 				.anyRequest().authenticated()
 			.and()
 			.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)

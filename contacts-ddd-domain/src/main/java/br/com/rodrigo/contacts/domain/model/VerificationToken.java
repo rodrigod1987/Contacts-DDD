@@ -17,19 +17,19 @@ public class VerificationToken {
  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
      
     private String token;
    
-    @OneToOne(targetEntity = ApplicationUser.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
-    private ApplicationUser user;
+    private User user;
      
     private Date expiryDate;
     
     public VerificationToken() { }
     
-    public VerificationToken(ApplicationUser user, String token) {
+    public VerificationToken(User user, String token) {
 		this.user = user;
 		this.token = token;
 		this.expiryDate = calculateExpiryDate(EXPIRATION);
@@ -50,7 +50,7 @@ public class VerificationToken {
 		return token;
 	}
     
-    public ApplicationUser getUser() {
+    public User getUser() {
 		return user;
 	}
     

@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.domain.application.IApplicationUserAppService;
-import br.com.rodrigo.contacts.domain.model.ApplicationUser;
+import br.com.rodrigo.contacts.domain.model.User;
 import br.com.rodrigo.contacts.domain.model.VerificationToken;
 import br.com.rodrigo.contacts.domain.service.IApplicationUserService;
 import br.com.rodrigo.contacts.domain.service.IVerificationTokenService;
@@ -17,17 +17,19 @@ public class ApplicationUserAppService implements IApplicationUserAppService {
 	private IVerificationTokenService registrationTokenService;
 	
 	@Autowired
-	public ApplicationUserAppService(IApplicationUserService service) {
+	public ApplicationUserAppService(IApplicationUserService service,
+			IVerificationTokenService registrationTokenService) {
 		this.service = service;
+		this.registrationTokenService = registrationTokenService;
 	}
 
 	@Override
-	public Page<ApplicationUser> findAll(Integer page, Integer size) {
+	public Page<User> findAll(Integer page, Integer size) {
 		return service.findAll(page, size);
 	}
 
 	@Override
-	public ApplicationUser save(ApplicationUser entity) {
+	public User save(User entity) {
 		return service.save(entity);
 	}
 
@@ -37,17 +39,18 @@ public class ApplicationUserAppService implements IApplicationUserAppService {
 	}
 
 	@Override
-	public ApplicationUser findBy(Long id) {
+	public User findBy(Long id) {
 		return service.findBy(id);
 	}
 
 	@Override
-	public ApplicationUser findByUsername(String username) {
-		return service.findByUsername(username);
+	public User findByUsername(String username) {
+		User user = service.findByUsername(username);
+		return user;
 	}
 
 	@Override
-	public void createVerificationToken(ApplicationUser user, String token) {
+	public void createVerificationToken(User user, String token) {
 		VerificationToken verificationToken = new VerificationToken(user, token);
 		this.registrationTokenService.save(verificationToken);
 	}
@@ -58,7 +61,7 @@ public class ApplicationUserAppService implements IApplicationUserAppService {
 	}
 
 	@Override
-	public void saveRegisteredUser(ApplicationUser user) {
+	public void saveRegisteredUser(User user) {
 		user.setEnabled(true);
 		this.service.save(user);
 	}

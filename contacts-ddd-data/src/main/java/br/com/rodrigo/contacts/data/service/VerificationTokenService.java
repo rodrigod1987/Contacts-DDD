@@ -5,11 +5,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.domain.model.VerificationToken;
 import br.com.rodrigo.contacts.domain.repository.IVerificationTokenRepository;
 import br.com.rodrigo.contacts.domain.service.IVerificationTokenService;
 
+@Service
 public class VerificationTokenService implements IVerificationTokenService {
 
 	private IVerificationTokenRepository repository;

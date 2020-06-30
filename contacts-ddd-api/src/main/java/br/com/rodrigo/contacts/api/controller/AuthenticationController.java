@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rodrigo.contacts.api.security.JwtToken;
 import br.com.rodrigo.contacts.api.services.ApplicationUserDetailsService;
-import br.com.rodrigo.contacts.domain.model.ApplicationUser;
+import br.com.rodrigo.contacts.domain.model.User;
 import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
 
 @RestController
@@ -52,7 +52,7 @@ public class AuthenticationController {
 				.body("Invalid credentials.");
 		}
 		
-		ApplicationUser userDetails = this.applicationUserDetailsService
+		User userDetails = this.applicationUserDetailsService
 				.findBy(user.getUserName());
 		
 		String token = jwtToken.generate(userDetails);
