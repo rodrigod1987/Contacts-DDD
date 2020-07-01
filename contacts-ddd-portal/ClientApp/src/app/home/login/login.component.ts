@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
+import { Exception } from 'src/app/shared/model/exception';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   returnUrl : string;
 
-  @Input() error: any;
+  @Input() error: Exception;
 
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -41,9 +42,12 @@ export class LoginComponent implements OnInit {
         () => {
           this.router.navigate([this.returnUrl]);
         },
-        err => {
+        (err: any) => {
           this.loadingService.stop();
-          this.error = err.error ;
+          debugger;
+          this.error = JSON.parse(err.error) ;
+          console.log(this.error);
+
         }
       );
 

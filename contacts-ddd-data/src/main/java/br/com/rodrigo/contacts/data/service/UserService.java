@@ -14,15 +14,15 @@ import br.com.rodrigo.contacts.data.exception.UserNotEnabledException;
 import br.com.rodrigo.contacts.data.exception.UserNotFoundException;
 import br.com.rodrigo.contacts.data.repository.ApplicationUserRepository;
 import br.com.rodrigo.contacts.domain.model.User;
-import br.com.rodrigo.contacts.domain.service.IApplicationUserService;
+import br.com.rodrigo.contacts.domain.service.IUserService;
 
 @Service
-public class ApplicationUserService implements IApplicationUserService {
+public class UserService implements IUserService {
 	
 	private ApplicationUserRepository repository;
 	
 	@Autowired
-	public ApplicationUserService(ApplicationUserRepository repository) {
+	public UserService(ApplicationUserRepository repository) {
 		this.repository = repository;
 	}
 

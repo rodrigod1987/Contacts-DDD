@@ -24,7 +24,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import br.com.rodrigo.contacts.api.filter.AuthenticationFilter;
-import br.com.rodrigo.contacts.api.services.ApplicationUserDetailsService;
+import br.com.rodrigo.contacts.api.services.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -60,12 +60,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 	
 	private AuthenticationEntryPoint authenticationEntryPoint;
-    private ApplicationUserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
     private AuthenticationFilter authenticationFilter;
 
     @Autowired
     public SecurityConfiguration(AuthenticationEntryPoint authenticationEntryPoint,
-    		ApplicationUserDetailsService userDetailsService,
+    		UserDetailsService userDetailsService,
     		AuthenticationFilter authenticationFilter) {																																																		
     	this.authenticationEntryPoint = authenticationEntryPoint;
         this.userDetailsService = userDetailsService;

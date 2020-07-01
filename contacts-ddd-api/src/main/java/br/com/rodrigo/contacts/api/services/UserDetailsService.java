@@ -4,19 +4,18 @@ import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.rodrigo.contacts.app.service.ApplicationUserAppService;
 
 @Service
-public class ApplicationUserDetailsService implements UserDetailsService {
+public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
 	private ApplicationUserAppService appService;
 
 	@Autowired
-	public ApplicationUserDetailsService(ApplicationUserAppService appService) {
+	public UserDetailsService(ApplicationUserAppService appService) {
 		this.appService = appService;
 	}
 

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rodrigo.contacts.api.security.JwtToken;
-import br.com.rodrigo.contacts.api.services.ApplicationUserDetailsService;
+import br.com.rodrigo.contacts.api.services.UserDetailsService;
 import br.com.rodrigo.contacts.domain.model.User;
-import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
+import br.com.rodrigo.contacts.domain.service.dto.UserDto;
 
 @RestController
 @CrossOrigin
@@ -23,34 +23,27 @@ import br.com.rodrigo.contacts.domain.service.dto.ApplicationUserDto;
 public class AuthenticationController {
 
 	private AuthenticationManager authenticationManager;
-	private ApplicationUserDetailsService applicationUserDetailsService;
+	private UserDetailsService applicationUserDetailsService;
 	private JwtToken jwtToken;
 
 	@Autowired
 	public AuthenticationController(AuthenticationManager authenticationManager,
-			ApplicationUserDetailsService applicationUserDetailsService, JwtToken jwtToken) {
+			UserDetailsService applicationUserDetailsService, JwtToken jwtToken) {
 		this.authenticationManager = authenticationManager;
 		this.applicationUserDetailsService = applicationUserDetailsService;
 		this.jwtToken = jwtToken;
 	}
 	
 	@PostMapping("/authenticate")
-	public ResponseEntity<String> authenticate(@RequestBody ApplicationUserDto user) {
+	public ResponseEntity<String> authenticate(@RequestBody UserDto user) {
 		try {
 			authenticationManager
 					.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), 
 							user.getPassword()));
-		} catch (DisabledException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			return ResponseEntity
-				.badRequest()
-				.body("Disabled user");
-		} catch (BadCredentialsException ex) {
-			System.out.println(ex.getMessage());
-			return ResponseEntity
-				.badRequest()
-				.body("Invalid credentials.");
-		}
+			throw new RuntimeException(e.getMessage(), null);
+		} 
 		
 		User userDetails = this.applicationUserDetailsService
 				.findBy(user.getUserName());

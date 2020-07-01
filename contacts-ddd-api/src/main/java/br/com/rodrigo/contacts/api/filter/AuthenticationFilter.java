@@ -17,20 +17,20 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.rodrigo.contacts.api.security.JwtToken;
-import br.com.rodrigo.contacts.api.services.ApplicationUserDetailsService;
+import br.com.rodrigo.contacts.api.services.UserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 
 @Component
 @Order(2)
 public class AuthenticationFilter extends OncePerRequestFilter {
 	
-	private ApplicationUserDetailsService applicationUserDetailsService;
+	private UserDetailsService userDetailsService;
 	private JwtToken jwtToken;
 	
 	@Autowired
-	public AuthenticationFilter(ApplicationUserDetailsService applicationUserDetailsService, 
+	public AuthenticationFilter(UserDetailsService userDetailsService, 
 			JwtToken jwtToken) {
-		this.applicationUserDetailsService = applicationUserDetailsService;
+		this.userDetailsService = userDetailsService;
 		this.jwtToken = jwtToken;
 	}
 
@@ -58,7 +58,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 			return;
 		}
 		
-		UserDetails userDetails = applicationUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
+		UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
 		
 		if (jwtToken.isValid(jwtRequest.getToken(), userDetails)) {
 			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, 

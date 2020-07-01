@@ -7,17 +7,17 @@ import org.springframework.stereotype.Service;
 import br.com.rodrigo.contacts.domain.application.IApplicationUserAppService;
 import br.com.rodrigo.contacts.domain.model.User;
 import br.com.rodrigo.contacts.domain.model.VerificationToken;
-import br.com.rodrigo.contacts.domain.service.IApplicationUserService;
+import br.com.rodrigo.contacts.domain.service.IUserService;
 import br.com.rodrigo.contacts.domain.service.IVerificationTokenService;
 
 @Service
 public class ApplicationUserAppService implements IApplicationUserAppService {
 
-	private IApplicationUserService service;
+	private IUserService service;
 	private IVerificationTokenService registrationTokenService;
 	
 	@Autowired
-	public ApplicationUserAppService(IApplicationUserService service,
+	public ApplicationUserAppService(IUserService service,
 			IVerificationTokenService registrationTokenService) {
 		this.service = service;
 		this.registrationTokenService = registrationTokenService;

@@ -34,7 +34,7 @@
       <a class="btn btn-lg btn-danger btn-block" [routerLink]="['/home', 'register']">Signup</a>
     </form>
     <div *ngIf="error" class="alert alert-danger" role="alert">
-      {{error}}
+      {{error.message}}
     </div>
   </div>
 </div>

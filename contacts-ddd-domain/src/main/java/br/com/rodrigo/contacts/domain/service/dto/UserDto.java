@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(value = Include.NON_NULL)
-public class ApplicationUserDto implements Serializable {
+public class UserDto implements Serializable {
 
 	/**
 	 * 
@@ -17,7 +17,7 @@ public class ApplicationUserDto implements Serializable {
 	private String password;
 	private boolean active;
 	
-	public ApplicationUserDto() { }
+	public UserDto() { }
 
 	public long getId() {
 		return id;
