@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import br.com.rodrigo.contacts.domain.app.service.BaseAppService;
+import br.com.rodrigo.contacts.data.service.PhoneService;
+import br.com.rodrigo.contacts.domain.application.IPhoneAppService;
 import br.com.rodrigo.contacts.domain.model.Phone;
-import br.com.rodrigo.contacts.service.PhoneService;
 
 @Service
-public class PhoneAppService implements BaseAppService<Phone> {
+public class PhoneAppService implements IPhoneAppService {
 	
 	private PhoneService service;
 	
@@ -40,6 +40,7 @@ public class PhoneAppService implements BaseAppService<Phone> {
 		return service.findBy(id);
 	}
 	
+	@Override
 	public Collection<Phone> findAllBy(Long contactId) {
 		return service.findAllBy(contactId);
 	}

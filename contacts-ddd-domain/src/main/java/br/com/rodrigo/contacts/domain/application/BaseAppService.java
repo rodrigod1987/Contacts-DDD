@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.domain.app.service;
+package br.com.rodrigo.contacts.domain.application;
 
 import org.springframework.data.domain.Page;
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rodrigo.contacts.app.service.ContactsAppService;
+import br.com.rodrigo.contacts.domain.application.IContactsAppService;
 import br.com.rodrigo.contacts.domain.model.Contact;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -24,7 +25,7 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/api/v1/contacts")
 public class ContactController {
 
-	private ContactsAppService appService;
+	private IContactsAppService appService;
 
 	@Autowired
 	public ContactController(ContactsAppService appService) {

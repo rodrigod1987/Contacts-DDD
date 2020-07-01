@@ -9,7 +9,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import br.com.rodrigo.contacts.domain.model.ApplicationUser;
+import br.com.rodrigo.contacts.domain.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -72,7 +72,7 @@ public class JwtToken implements Serializable {
 	 * @param userDetails
 	 * @return
 	 */
-	public String generate(ApplicationUser userDetails) {
+	public String generate(User userDetails) {
 		Map<String, Object> claims = new HashMap<>();
 		
 		claims.put("username", userDetails.getUsername());

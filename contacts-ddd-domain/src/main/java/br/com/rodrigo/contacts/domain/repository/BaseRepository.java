@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.domain.data.repository;
+package br.com.rodrigo.contacts.domain.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;

@@ -19,13 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rodrigo.contacts.app.service.PhoneAppService;
+import br.com.rodrigo.contacts.domain.application.IPhoneAppService;
 import br.com.rodrigo.contacts.domain.model.Phone;
 
 @RestController
 @RequestMapping("/api/v1/phones")
 public class PhoneController {
 	
-	private PhoneAppService phoneAppService;
+	private IPhoneAppService phoneAppService;
 
 	@Autowired
 	public PhoneController(PhoneAppService phoneAppService) {
