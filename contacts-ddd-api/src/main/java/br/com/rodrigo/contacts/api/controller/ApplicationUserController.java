@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,6 +32,8 @@ public class ApplicationUserController {
 	private PasswordEncoder encoder;
 	@Autowired
 	private ApplicationEventPublisher eventPublisher;
+	@Autowired
+	private Environment env;
 	
 	public ApplicationUserController(IApplicationUserAppService appService,
 			PasswordEncoder encoder) {
@@ -46,7 +49,7 @@ public class ApplicationUserController {
 		user.setPassword(encoder.encode(user.getPassword()));
 		User registered = appService.save(user);
 		
-		String appUrl = request.getContextPath().concat("/api/v1/users");
+		String appUrl = env.getProperty("client.host");
 		
         eventPublisher.publishEvent(new OnRegistrationCompleteEvent(registered, 
           request.getLocale(), 
@@ -79,7 +82,7 @@ public class ApplicationUserController {
 	    appService.saveRegisteredUser(user);
 	    
 	    return ResponseEntity
-	    		.status(HttpStatus.SEE_OTHER)
+	    		.ok()
 	    		.body("The user was activated successfully!");
 	}
 	

@@ -2,10 +2,13 @@ package br.com.rodrigo.contacts.api.listeners;
 
 import java.util.UUID;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
 import br.com.rodrigo.contacts.domain.application.IApplicationUserAppService;
@@ -27,25 +30,32 @@ public class RegistrationListener implements
     }
  
     private void confirmRegistration(OnRegistrationCompleteEvent event) {
-        User user = event.getUser();
+        User user = event.getUser(); 
         String token = UUID.randomUUID().toString();
         service.createVerificationToken(user, token);
          
         String recipientAddress = user.getEmail();
         String subject = "Registration Confirmation";
         String confirmationUrl = event.getAppUrl() 
-        		+ "/signupConfirmation?token=" 
+        		+ "home/validate?token=" 
         		+ token;
          
-        SimpleMailMessage email = new SimpleMailMessage();
-        email.setTo(recipientAddress);
-        email.setSubject(subject);
-        email.setText(getMessage(confirmationUrl));
-        mailSender.send(email);
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper email = new MimeMessageHelper(message, "utf-8");
+        
+        try {
+			email.setTo(recipientAddress);
+			email.setSubject(subject);
+			message.setContent(getMessage(confirmationUrl), "text/html");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Malformed mail message.", e);
+		}
+        
+        mailSender.send(message);
     }
     
     private String getMessage(String confirmationUrl) {
-    	confirmationUrl = "http://localhost:8051" + confirmationUrl;
     	return "<html><body>"
     			+ "<h1>Hello you!</h1>"
     			+ "<h3>Thank's for registering on!</h3>"

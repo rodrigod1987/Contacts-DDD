@@ -11,13 +11,15 @@ import { HomeRoutingModule } from './home.routing.module';
 import { IndexComponent } from './index/index.component';
 import { DirectivesModule } from '../shared/directives/directives.module';
 import { ComponentsModule } from '../shared/components/components.module';
+import { ValidateComponent } from './validate/validate.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     IndexComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ValidateComponent
   ],
   imports: [
     CommonModule,

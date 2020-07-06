@@ -13,13 +13,9 @@ export class GlobalErrorHanler implements ErrorHandler {
 
   handleError(error: any): void {
 
-    const location = this.injector.get(LocationStrategy);
+    debugger;
     const userService = this.injector.get(UserAuthService);
     const messageService = this.injector.get(MessageService);
-
-    const url = location instanceof PathLocationStrategy
-      ? location.path()
-      : '';
 
     this.redirectAndShowMessage(error, userService, messageService);
 

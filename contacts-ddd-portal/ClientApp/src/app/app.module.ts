@@ -1,7 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { HTTP_INTERCEPTORS }    from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +10,6 @@ import { environment } from 'src/environments/environment';
 import { ApiAuthInterceptor } from './core/intercept/api-auth.interceptor';
 import { ErrorInterceptor } from './core/intercept/error.interceptor';
 import { ComponentsModule } from './shared/components/components.module';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { GlobalErrorHanler } from './core/handlers/global-error.handler';
 import { RouterModule } from '@angular/router';
 import { NotFoundModule } from './not-found/not-found.module';

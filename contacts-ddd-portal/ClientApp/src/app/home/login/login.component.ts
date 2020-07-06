@@ -39,9 +39,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(user)
       .subscribe(
-        () => {
-          this.router.navigate([this.returnUrl]);
-        },
+        () => this.router.navigate([this.returnUrl]) ,
         (err: any) => {
           this.loadingService.stop();
           debugger;
