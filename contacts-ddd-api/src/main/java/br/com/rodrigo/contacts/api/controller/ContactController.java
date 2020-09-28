@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.rodrigo.contacts.app.service.ContactsAppService;
+import br.com.rodrigo.contacts.application.service.ContactsAppService;
 import br.com.rodrigo.contacts.domain.application.IContactsAppService;
 import br.com.rodrigo.contacts.domain.model.Contact;
 import io.swagger.annotations.ApiOperation;

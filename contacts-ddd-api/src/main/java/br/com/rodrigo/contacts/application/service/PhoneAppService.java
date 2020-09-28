@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.app.service;
+package br.com.rodrigo.contacts.application.service;
 
 import java.util.Collection;
 

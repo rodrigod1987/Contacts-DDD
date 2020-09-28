@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.app.service;
+package br.com.rodrigo.contacts.application.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

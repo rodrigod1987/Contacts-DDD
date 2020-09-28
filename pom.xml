@@ -7,11 +7,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>contacts-ddd-domain</module>
-		<module>contacts-ddd-data</module>
-		<module>contacts-ddd-application</module>
 		<module>contacts-ddd-api</module>
 	</modules>
+
+	<properties>
+		<spring.boot.version>2.2.4.RELEASE</spring.boot.version>
+	</properties>
 
 	<build>
 		<plugins>

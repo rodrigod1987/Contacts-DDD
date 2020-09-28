@@ -22,7 +22,7 @@ public class UserNotEnabledException extends RuntimeException {
 	}
 	
 	public UserNotEnabledException(String username, Throwable cause) {
-		super(message, cause);
+		super(String.format(messageWithUser, username), cause);
 	}
 
 }

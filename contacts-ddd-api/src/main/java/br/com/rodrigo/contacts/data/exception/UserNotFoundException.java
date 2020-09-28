@@ -27,7 +27,7 @@ public class UserNotFoundException extends RuntimeException {
 	}
 	
 	public UserNotFoundException(String username, Throwable cause) {
-		super(message, cause);
+		super(String.format(messageWithUser, username), cause);
 	}
 	
 }

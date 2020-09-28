@@ -1,4 +1,4 @@
-package br.com.rodrigo.contacts.app.service.mapper;
+package br.com.rodrigo.contacts.application.mapper;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;

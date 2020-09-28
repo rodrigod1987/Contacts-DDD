@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.rodrigo.contacts.app.service.PhoneAppService;
+import br.com.rodrigo.contacts.application.service.PhoneAppService;
 import br.com.rodrigo.contacts.domain.application.IPhoneAppService;
 import br.com.rodrigo.contacts.domain.model.Phone;
 

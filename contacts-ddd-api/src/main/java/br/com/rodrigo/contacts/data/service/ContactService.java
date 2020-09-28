@@ -14,9 +14,9 @@ import br.com.rodrigo.contacts.domain.service.IContactService;
 
 @Service
 public class ContactService implements IContactService {
-
+	
 	private ContactRepository repository;
-
+	
 	@Autowired
 	public ContactService(ContactRepository repository) {
 		this.repository = repository;
