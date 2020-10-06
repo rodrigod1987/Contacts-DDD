@@ -1,5 +1,7 @@
 package br.com.rodrigo.contacts.api.configuration;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -25,19 +27,26 @@ public class DatabaseConfiguration {
 	private Environment env;
 
 	@Bean
-	public DataSource dataSource() {
+	public DataSource dataSource() throws URISyntaxException {
+		System.out.println("Datasource de produção ativado.");
+		URI dbUri = new URI(System.getenv("DATABASE_URL"));
+		
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
+		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		
 		dataSource.setDriverClassName(env.getProperty("db.driver"));
-		dataSource.setUrl(env.getProperty("db.url"));
-		dataSource.setUsername(env.getProperty("db.username"));
-		dataSource.setPassword(env.getProperty("db.password"));
+		dataSource.setUrl(dbUrl);
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
 		
 		return dataSource;
 	}
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws URISyntaxException {
 		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 
 		entityManagerFactory.setDataSource(this.dataSource());
@@ -60,7 +69,7 @@ public class DatabaseConfiguration {
 	}
 	
 	@Bean
-	public JpaTransactionManager transactionManager() {
+	public JpaTransactionManager transactionManager() throws URISyntaxException {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(this.entityManagerFactory().getObject());
 		return transactionManager;
