@@ -10,48 +10,104 @@
 	<artifactId>contacts-ddd-web</artifactId>
 	<packaging>jar</packaging>
 
-	<build>
-		<plugins>
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.eirslett</groupId>
+						<artifactId>frontend-maven-plugin</artifactId>
+						<version>1.9.1</version>
 
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.9.1</version>
-
-				<configuration>
-					<nodeVersion>v12.18.0</nodeVersion> <!-- v9.11.1 v12.18.0 -->
-					<npmVersion>6.14.4</npmVersion>
-					<workingDirectory>src/main/webapp/ClientApp/</workingDirectory>
-				</configuration>
-
-				<executions>
-					<execution>
-						<id>install node and npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
-					</execution>
-
-					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>prod</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
 						<configuration>
-							<arguments>run-script buildProduction</arguments>
+							<nodeVersion>v12.18.0</nodeVersion> <!-- v9.11.1 v12.18.0 -->
+							<npmVersion>6.14.4</npmVersion>
+							<workingDirectory>src/main/webapp/ClientApp/</workingDirectory>
 						</configuration>
-						<phase>generate-resources</phase>
-					</execution>
-				</executions>
-			</plugin>
 
-		</plugins>
-	</build>
+						<executions>
+							<execution>
+								<id>install node and npm</id>
+								<goals>
+									<goal>install-node-and-npm</goal>
+								</goals>
+							</execution>
+
+							<execution>
+								<id>npm install</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>prod</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+								<configuration>
+									<arguments>run-script buildProduction</arguments>
+								</configuration>
+								<phase>generate-resources</phase>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+
+		</profile>
+		
+		<profile>
+			<id>dev</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.eirslett</groupId>
+						<artifactId>frontend-maven-plugin</artifactId>
+						<version>1.9.1</version>
+
+						<configuration>
+							<nodeVersion>v12.18.0</nodeVersion> <!-- v9.11.1 v12.18.0 -->
+							<npmVersion>6.14.4</npmVersion>
+							<workingDirectory>src/main/webapp/ClientApp/</workingDirectory>
+						</configuration>
+
+						<executions>
+							<execution>
+								<id>install node and npm</id>
+								<goals>
+									<goal>install-node-and-npm</goal>
+								</goals>
+							</execution>
+
+							<execution>
+								<id>npm install</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>dev</id>
+								<goals>
+									<goal>npm</goal>
+								</goals>
+								<configuration>
+									<arguments>run-script build</arguments>
+								</configuration>
+								<phase>generate-resources</phase>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+
+		</profile>
+		
+	</profiles>
 
 </project>

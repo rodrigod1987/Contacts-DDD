@@ -75,8 +75,7 @@ public class SecurityConfigurationDev extends WebSecurityConfigurerAdapter {
     
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/**",
-        		"/v2/api-docs",
+        web.ignoring().antMatchers("/v2/api-docs",
                 "/configuration/ui",
                 "/swagger-resources/**",
                 "/configuration/security",
@@ -93,7 +92,8 @@ public class SecurityConfigurationDev extends WebSecurityConfigurerAdapter {
     			.antMatchers(HttpMethod.POST, "/api/v1/users/signup").permitAll()
     			.antMatchers(HttpMethod.POST, "/api/v1/auth/authenticate").permitAll()
     			.antMatchers(HttpMethod.GET, "/api/v1/users/signupConfirmation").permitAll()
-				.anyRequest().authenticated()
+				.antMatchers("/api/**").authenticated()
+				.anyRequest().permitAll()
 			.and()
 			.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
 			.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
