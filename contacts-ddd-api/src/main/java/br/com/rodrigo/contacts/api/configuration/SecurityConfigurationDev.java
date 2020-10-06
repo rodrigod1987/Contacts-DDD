@@ -1,7 +1,6 @@
 package br.com.rodrigo.contacts.api.configuration;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -30,8 +29,8 @@ import br.com.rodrigo.contacts.api.services.UserDetailsService;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Profile("prod")
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+@Profile("dev")
+public class SecurityConfigurationDev extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -48,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	CorsConfigurationSource corsConfigurationSource() {
 		final CorsConfiguration configuration = new CorsConfiguration();
 
-		configuration.setAllowedOrigins(Collections.singletonList("Ajustar para produção"));
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080", "http://localhost:4200"));
 		configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
 		// setAllowCredentials(true) is important, otherwise:
 		// The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
@@ -66,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private AuthenticationFilter authenticationFilter;
 
     @Autowired
-    public SecurityConfiguration(AuthenticationEntryPoint authenticationEntryPoint,
+    public SecurityConfigurationDev(AuthenticationEntryPoint authenticationEntryPoint,
     		UserDetailsService userDetailsService,
     		AuthenticationFilter authenticationFilter) {																																																		
     	this.authenticationEntryPoint = authenticationEntryPoint;

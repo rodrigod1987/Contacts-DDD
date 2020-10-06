@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar contacts-ddd-api/target/contacts-ddd-api-2.3.4.RELEASE.jar

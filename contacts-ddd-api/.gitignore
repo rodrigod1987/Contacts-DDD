@@ -1,7 +1,5 @@
-#Excluded folders
-target/
-.settings/
-
-#Excluded files
 .project
-.classpath
+.settings/*
+target/*
+
+src/main/resources/static/*

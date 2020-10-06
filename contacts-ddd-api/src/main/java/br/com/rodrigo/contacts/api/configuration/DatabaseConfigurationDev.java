@@ -18,8 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@Profile("prod")
-public class DatabaseConfiguration {
+@Profile("dev")
+public class DatabaseConfigurationDev {
 
 	@Autowired
 	private Environment env;

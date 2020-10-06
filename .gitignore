@@ -1,6 +1,8 @@
-#Excluded folders
-target/
-.settings/
-
-#Excluded files
+.settings/*
 .project
+target/*
+
+src/main/webapp/node/*
+src/main/webapp/node_modules/*
+src/main/webapp/e2e/*
+src/main/webapp/dist/*
