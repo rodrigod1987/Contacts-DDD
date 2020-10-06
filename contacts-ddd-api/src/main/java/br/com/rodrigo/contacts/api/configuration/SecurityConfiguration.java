@@ -48,7 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	CorsConfigurationSource corsConfigurationSource() {
 		final CorsConfiguration configuration = new CorsConfiguration();
 
-		configuration.setAllowedOrigins(Collections.singletonList("https://contacts-ddd.herokuapp.com"));
+		configuration.setAllowedOrigins(Collections.singletonList("http://contacts-ddd.herokuapp.com"));
 		configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
 		// setAllowCredentials(true) is important, otherwise:
 		// The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
