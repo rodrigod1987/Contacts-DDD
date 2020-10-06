@@ -13,8 +13,8 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>contacts-ddd-api</module>
 		<module>contacts-ddd-web</module>
+		<module>contacts-ddd-api</module>
 	</modules>
 
 	<build>
