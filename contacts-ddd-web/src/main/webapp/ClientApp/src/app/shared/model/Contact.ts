@@ -6,4 +6,4 @@ export class Contact {
     public name: string,
     public phones: Phone[]) {}
 
-}
+} 

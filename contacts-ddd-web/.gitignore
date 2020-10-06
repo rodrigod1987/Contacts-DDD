@@ -6,3 +6,4 @@ src/main/webapp/ClientApp/dist/*
 src/main/webapp/ClientApp/e2e/*
 src/main/webapp/ClientApp/node/*
 src/main/webapp/ClientApp/node_modules/*
+/target/
