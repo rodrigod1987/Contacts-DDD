@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-@Entity
+@Entity(name = "User_TBL")
 public class User {
 	
 	@Id
@@ -24,6 +25,8 @@ public class User {
 	@Column(nullable = false)
 	private Date birthdate;
 	private boolean enabled;
+	@OneToOne(mappedBy = "user")
+	private VerificationToken verificationToken;	
 	
 	public User() {
 		super();
@@ -80,6 +83,10 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	public VerificationToken getVerificationToken() {
+		return verificationToken;
 	}
 
 }

@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.Errors;
@@ -31,8 +30,6 @@ public class ApplicationUserController {
 	private PasswordEncoder encoder;
 	@Autowired
 	private ApplicationEventPublisher eventPublisher;
-	@Autowired
-	private Environment env;
 	
 	public ApplicationUserController(IApplicationUserAppService appService,
 			PasswordEncoder encoder) {
@@ -48,7 +45,7 @@ public class ApplicationUserController {
 		user.setPassword(encoder.encode(user.getPassword()));
 		User registered = appService.save(user);
 		
-		String appUrl = env.getProperty("client.host");
+		String appUrl = request.getRequestURL().toString().replace("/api/v1/users/signup", "");
 		
         eventPublisher.publishEvent(new OnRegistrationCompleteEvent(registered, 
           request.getLocale(), 

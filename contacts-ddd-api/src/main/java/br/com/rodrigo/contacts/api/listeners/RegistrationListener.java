@@ -37,7 +37,7 @@ public class RegistrationListener implements
         String recipientAddress = user.getEmail();
         String subject = "Registration Confirmation";
         String confirmationUrl = event.getAppUrl() 
-        		+ "home/validate?token=" 
+        		+ "/#/home/validate?token=" 
         		+ token;
          
         MimeMessage message = mailSender.createMimeMessage();
