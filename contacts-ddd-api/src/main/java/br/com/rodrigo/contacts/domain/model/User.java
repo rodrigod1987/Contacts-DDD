@@ -19,7 +19,6 @@ public class User {
 	private String username;
 	@Column(nullable = false)
 	private String password;
-	private boolean active;
 	@Column(nullable = false)
 	private String email;
 	@Column(nullable = false)
@@ -49,14 +48,6 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-	
 	public String getEmail() {
 		return email;
 	}

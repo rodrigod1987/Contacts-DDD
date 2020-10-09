@@ -1,0 +1,1 @@
+alter table user_tbl drop column active;

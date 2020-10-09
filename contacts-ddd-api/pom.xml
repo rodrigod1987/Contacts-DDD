@@ -121,6 +121,13 @@
 			<artifactId>jackson-annotations</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -132,6 +139,34 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.13.0</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
@@ -194,7 +229,22 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+					<user>postgres</user>
+					<password>11affc19cced7343a84cfac65eebdf1c</password>
+					<schemas>public</schemas>
+					<url>jdbc:postgresql://localhost:5432/contacts_dev</url>
+					<driver>org.postgresql.Driver</driver>
+					<locations>classpath:db/migration</locations>
+				</configuration>
+			</plugin>
+
 		</plugins>
+
 	</build>
 
 </project>
