@@ -229,20 +229,6 @@
 				</executions>
 			</plugin>
 
-			<plugin>
-				<groupId>org.flywaydb</groupId>
-				<artifactId>flyway-maven-plugin</artifactId>
-				<configuration>
-					<skip>false</skip>
-					<user>postgres</user>
-					<password>11affc19cced7343a84cfac65eebdf1c</password>
-					<schemas>public</schemas>
-					<url>jdbc:postgresql://localhost:5432/contacts_dev</url>
-					<driver>org.postgresql.Driver</driver>
-					<locations>classpath:db/migration</locations>
-				</configuration>
-			</plugin>
-
 		</plugins>
 
 	</build>
