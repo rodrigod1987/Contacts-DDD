@@ -15,7 +15,7 @@ export class PhoneService {
     private messageService: MessageService) { }
 
   getPhones(contactId: string): Observable<Phone[]> {
-    return this.http.get<Phone[]>(`${this.phonesUrl}?contactId=${contactId}`);
+    return this.http.get<Phone[]>(`${this.phonesUrl}/contact/${contactId}`);
   }
 
   getPhone(id: number) : Observable<Phone> {

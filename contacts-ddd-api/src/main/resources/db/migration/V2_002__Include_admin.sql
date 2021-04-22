@@ -1,0 +1,2 @@
+insert into user_tbl (id, active, birthdate, email, enabled, password, username)
+values (1, false,current_date,'contacts.ddd.registro@gmail.com',true,'$2a$10$wbDRoBrFlQzKhGi8Ah2Mf.R.N68/xVHqWrhRx6/hWADZlxUN.cWgG','admin')

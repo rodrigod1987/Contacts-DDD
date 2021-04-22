@@ -1,11 +1,11 @@
 package br.com.rodrigo.contacts.domain.service;
 
-import java.util.Collection;
+import org.springframework.data.domain.Page;
 
 import br.com.rodrigo.contacts.domain.model.Phone;
 
 public interface IPhoneService extends BaseService<Phone> {
 
-	Collection<Phone> findAllBy(Long contactId);
+	Page<Phone> findAllBy(Long contactId, Integer page, Integer size);
 	
 }

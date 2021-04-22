@@ -18,6 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.rodrigo.contacts.api.security.JwtToken;
 import br.com.rodrigo.contacts.api.services.UserDetailsService;
+import br.com.rodrigo.contacts.domain.model.User;
 import io.jsonwebtoken.ExpiredJwtException;
 
 @Component
@@ -41,7 +42,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 		String header = request.getHeader("Authorization");
 		
 		if (header != null) {
-			JwtRequest jwtRequest = validateRequestHeader(header);
+			JwtRequest jwtRequest = extractJWTfrom(header);
 					
 			if (jwtRequest != null)
 				authenticateRequest(request, jwtRequest);
@@ -59,10 +60,11 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 		}
 		
 		UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
+		User user = userDetailsService.findBy(jwtRequest.getUsername());
 		
 		if (jwtToken.isValid(jwtRequest.getToken(), userDetails)) {
-			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, 
-					null, 
+			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(user, 
+					userDetails, 
 					userDetails.getAuthorities());
 			
 			usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource()
@@ -73,7 +75,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 		
 	}
 
-	private JwtRequest validateRequestHeader(String header) {
+	private JwtRequest extractJWTfrom(String header) {
 
 		if (header.startsWith("Bearer ")) {
 			try {

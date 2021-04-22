@@ -1,7 +1,5 @@
 package br.com.rodrigo.contacts.application.service;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -41,8 +39,8 @@ public class PhoneAppService implements IPhoneAppService {
 	}
 	
 	@Override
-	public Collection<Phone> findAllBy(Long contactId) {
-		return service.findAllBy(contactId);
+	public Page<Phone> findAllBy(Long contactId, Integer page, Integer size) {
+		return service.findAllBy(contactId, page, size);
 	}
 
 }

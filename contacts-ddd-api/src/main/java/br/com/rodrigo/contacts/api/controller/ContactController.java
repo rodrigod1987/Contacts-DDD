@@ -35,11 +35,11 @@ public class ContactController {
 	@GetMapping
 	@ApiOperation(value = "Retorna a lista de Contatos")
 	@ApiResponses(value = {
-		    @ApiResponse(code = 200, message = "RequisiÁ„oo realizada com sucesso."),
-		    @ApiResponse(code = 401, message = "VocÍ n„o tem permiss„o para acessar este recurso."),
+		    @ApiResponse(code = 200, message = "Requisi√ß√£o realizada com sucesso."),
+		    @ApiResponse(code = 401, message = "Voc√™ n√£o tem permiss√£o para acessar este recurso."),
 		    @ApiResponse(code = 403, message = "Acesso proibido."),
-		    @ApiResponse(code = 404, message = "Recurso n„o encontrado."),
-		    @ApiResponse(code = 500, message = "Foi gerada uma exceÁ„o n„o tratada no servidor."),
+		    @ApiResponse(code = 404, message = "Recurso n√£o encontrado."),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exce√£o n√£o tratada no servidor."),
 		})
 	public ResponseEntity<Page<Contact>> getAll(
 			@RequestParam(defaultValue = "0") Integer page, 

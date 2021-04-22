@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,6 +24,9 @@ public class Contact {
 	@JsonIgnore
 	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL)
 	private List<Phone> phones;
+	@JsonIgnore
+	@ManyToOne
+	private User user;
 	
 	public long getId() {
 		return id;
@@ -55,6 +59,14 @@ public class Contact {
 	
 	public void removePhone(Phone phone) {
 		this.phones.remove(phone);
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

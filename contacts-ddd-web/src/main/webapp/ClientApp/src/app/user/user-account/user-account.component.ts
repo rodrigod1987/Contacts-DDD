@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { UserAuthService } from 'src/app/core/auth/user-auth.service';
-import { UserAuth } from 'src/app/shared/model/user';
+import { UserAuth } from 'src/app/shared/model/user.auth';
 
 @Component({
   templateUrl: './user-account.component.html'

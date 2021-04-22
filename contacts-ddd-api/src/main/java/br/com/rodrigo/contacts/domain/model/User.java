@@ -1,20 +1,24 @@
 package br.com.rodrigo.contacts.domain.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "User_TBL")
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@Column(nullable = false, unique = true)
 	private String username;
 	@Column(nullable = false)
@@ -24,8 +28,13 @@ public class User {
 	@Column(nullable = false)
 	private Date birthdate;
 	private boolean enabled;
+	
+	@JsonIgnore
 	@OneToOne(mappedBy = "user")
-	private VerificationToken verificationToken;	
+	private VerificationToken verificationToken;
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Contact> contacts;
 	
 	public User() {
 		super();
@@ -64,7 +73,7 @@ public class User {
 		this.birthdate = birthdate;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	
@@ -78,6 +87,10 @@ public class User {
 	
 	public VerificationToken getVerificationToken() {
 		return verificationToken;
+	}
+	
+	public List<Contact> getContacts() {
+		return contacts;
 	}
 
 }

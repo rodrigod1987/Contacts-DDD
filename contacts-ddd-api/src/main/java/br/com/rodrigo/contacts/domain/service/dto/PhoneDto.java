@@ -2,7 +2,6 @@ package br.com.rodrigo.contacts.domain.service.dto;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -18,7 +17,6 @@ public class PhoneDto implements Serializable {
 	private long id;
 	private long number;
 	private PhoneType type;
-	@JsonBackReference
 	private ContactDto contact;
 		
 	public long getId() {

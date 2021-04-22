@@ -1,16 +1,23 @@
-CREATE SEQUENCE contact_tbl_id_seq
+CREATE SEQUENCE user_tbl_id_seq
     INCREMENT 1
     START 1
     MINVALUE 1
     MAXVALUE 9223372036854775807
     CACHE 1;
 	
-CREATE TABLE contact_tbl
-(
-    id bigint NOT NULL DEFAULT nextval('contact_tbl_id_seq'::regclass),
-    name character varying(255) NOT NULL,
-    CONSTRAINT contact_tbl_pkey PRIMARY KEY (id)
-);
+CREATE SEQUENCE verificationtoken_tbl_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+	
+CREATE SEQUENCE contact_tbl_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
 	
 CREATE SEQUENCE phone_tbl_id_seq
     INCREMENT 1
@@ -19,26 +26,7 @@ CREATE SEQUENCE phone_tbl_id_seq
     MAXVALUE 9223372036854775807
     CACHE 1;
 	
-CREATE TABLE phone_tbl
-(
-    id bigint NOT NULL DEFAULT nextval('phone_tbl_id_seq'::regclass),
-    "number" bigint NOT NULL,
-    type integer,
-    contactid bigint NOT NULL,
-    CONSTRAINT phone_tbl_pkey PRIMARY KEY (id),
-    CONSTRAINT fk_contact_tbl FOREIGN KEY (contactid)
-        REFERENCES public.contact_tbl (id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-);
-	
-CREATE SEQUENCE user_tbl_id_seq
-    INCREMENT 1
-    START 1
-    MINVALUE 1
-    MAXVALUE 9223372036854775807
-    CACHE 1;
-	
+
 CREATE TABLE user_tbl
 (
     id bigint NOT NULL DEFAULT nextval('user_tbl_id_seq'::regclass),
@@ -52,13 +40,6 @@ CREATE TABLE user_tbl
     CONSTRAINT uk_user_tbl_user UNIQUE (username)
 );
 	
-CREATE SEQUENCE verificationtoken_tbl_id_seq
-    INCREMENT 1
-    START 1
-    MINVALUE 1
-    MAXVALUE 9223372036854775807
-    CACHE 1;
-	
 CREATE TABLE verificationtoken_tbl
 (
     id bigint NOT NULL DEFAULT nextval('verificationtoken_tbl_id_seq'::regclass),
@@ -71,3 +52,24 @@ CREATE TABLE verificationtoken_tbl
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
+	
+CREATE TABLE contact_tbl
+(
+    id bigint NOT NULL DEFAULT nextval('contact_tbl_id_seq'::regclass),
+    name character varying(255) NOT NULL,
+    CONSTRAINT contact_tbl_pkey PRIMARY KEY (id)
+);
+	
+CREATE TABLE phone_tbl
+(
+    id bigint NOT NULL DEFAULT nextval('phone_tbl_id_seq'::regclass),
+    "number" bigint NOT NULL,
+    type integer,
+    contact_id bigint NOT NULL,
+    CONSTRAINT phone_tbl_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_contact_tbl FOREIGN KEY (contact_id)
+        REFERENCES public.contact_tbl (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+	

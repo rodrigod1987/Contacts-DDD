@@ -43,6 +43,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.contactService
       .getContacts(page)
       .subscribe((response) => {
+        debugger;
         this.pageResponse = response;
         if (this.pageResponse != null)
           this.setPage(page);

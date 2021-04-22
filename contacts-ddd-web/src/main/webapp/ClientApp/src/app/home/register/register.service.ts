@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { tap, map, catchError } from 'rxjs/operators';
 
-import { UserAuth } from '../../shared/model/user';
+import { UserAuth } from '../../shared/model/user.auth';
 import { MessageService } from '../../shared/components/message/message.service';
 import { LoadingService } from 'src/app/shared/components/loading/loading.service';
 import { Router } from '@angular/router';

@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Component
-public class AuthEntryPoint
-		implements org.springframework.security.web.AuthenticationEntryPoint, Serializable {
+public class AuthEntryPoint	implements AuthenticationEntryPoint, Serializable {
 
 	/**
 	 * 

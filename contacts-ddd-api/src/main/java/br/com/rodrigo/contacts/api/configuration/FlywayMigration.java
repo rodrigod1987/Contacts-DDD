@@ -20,6 +20,7 @@ public class FlywayMigration {
 		Flyway flyway = Flyway
 				.configure()
 				.dataSource(this.datasource)
+				.baselineOnMigrate(true)
 				.load();
 		
 		return flywayStrategy -> {

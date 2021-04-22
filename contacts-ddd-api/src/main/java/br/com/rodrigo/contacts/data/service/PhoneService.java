@@ -1,6 +1,5 @@
 package br.com.rodrigo.contacts.data.service;
 
-import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +50,9 @@ public class PhoneService implements IPhoneService {
 	}
 	
 	@Override
-	public Collection<Phone> findAllBy(Long contactId) {
-		return repository.findByContactId(contactId);
+	public Page<Phone> findAllBy(Long contactId, Integer page, Integer size) {
+		Pageable paging = PageRequest.of(page, size);
+		return repository.findByContactId(contactId, paging);
 	}
 	
 

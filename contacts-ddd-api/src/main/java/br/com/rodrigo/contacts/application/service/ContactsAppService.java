@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import br.com.rodrigo.contacts.data.service.ContactService;
 import br.com.rodrigo.contacts.domain.application.IContactsAppService;
 import br.com.rodrigo.contacts.domain.model.Contact;
-import br.com.rodrigo.contacts.domain.model.Phone;
 
 @Service
 public class ContactsAppService implements IContactsAppService {
@@ -26,17 +25,7 @@ public class ContactsAppService implements IContactsAppService {
 
 	@Override
 	public Contact save(Contact entity) {
-		
-		if (entity.getPhones() != null) {
-			for(Phone phone : entity.getPhones()) {
-				if (phone.getId() == 0) {
-					phone.setContact(entity);
-				}
-			}
-		}
-		
 		return service.save(entity);
-
 	}
 
 	@Override
