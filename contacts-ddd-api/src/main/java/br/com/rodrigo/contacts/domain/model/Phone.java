@@ -18,7 +18,7 @@ public class Phone {
 	private long number;
 	private PhoneType type;
 	@ManyToOne
-	@JoinColumn(name = "contactId", nullable = false)
+	@JoinColumn(name = "contact_id", nullable = false)
 	private Contact contact;
 
 	public long getId() {
